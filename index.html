@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plátanos El Pulpo - Ticket Digital</title>
+    <!-- Fuentes de Google para que se vea fino -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           ESTILOS GENERALES Y MINIMALISTAS
+           ========================================= */
+        :root {
+            --verde-oscuro: #1a4314;
+            --verde-claro: #4caf50;
+            --amarillo: #ffc107;
+            --blanco: #ffffff;
+            --gris-fondo: #f4f7f4;
+            --texto-oscuro: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--texto-oscuro);
+        }
+
+        /* =========================================
+           MENÚ HAMBURGUESA
+           ========================================= */
+        header {
+            background-color: var(--verde-oscuro);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            color: var(--blanco);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--blanco);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: var(--verde-oscuro);
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu a {
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 10px 0;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* =========================================
+           PORTADA
+           ========================================= */
+        .portada-container {
+            width: 100%;
+            max-height: 350px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--verde-oscuro);
+        }
+
+        .portada-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* =========================================
+           TARJETA DIGITAL / TICKET
+           ========================================= */
+        .main-container {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            margin-top: -30px; /* Para que la tarjeta suba un poco sobre la portada */
+        }
+
+        .ticket-card {
+            background-color: var(--blanco);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde-oscuro));
+            color: var(--blanco);
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        .ticket-header h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .ticket-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Simulación de bordes de ticket (los circulitos a los lados) */
+        .ticket-body {
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .ticket-body::before, .ticket-body::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--gris-fondo);
+            border-radius: 50%;
+        }
+
+        .ticket-body::before { left: -15px; }
+        .ticket-body::after { right: -15px; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-weight: 800;
+            color: var(--verde-oscuro);
+            font-size: 1rem;
+            text-align: right;
+        }
+
+        .highlight-ticket {
+            background-color: #fff9e6;
+            border: 2px solid var(--amarillo);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .highlight-ticket h2 {
+            color: var(--verde-oscuro);
+            font-size: 1.2rem;
+        }
+        
+        .highlight-ticket .numero {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--amarillo);
+            margin: 10px 0;
+        }
+
+        .ticket-footer {
+            text-align: center;
+            padding: 0 20px 20px 20px;
+        }
+
+        .btn-compartir {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25D366; /* Color WhatsApp */
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-compartir:hover {
+            transform: scale(1.02);
+        }
+
+        .nota-comunidad {
+            font-size: 0.75rem;
+            color: #888;
+            text-align: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        /* =========================================
+           MODAL DE REGISTRO (Para pedir los datos)
+           ========================================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--blanco);
+            padding: 30px 20px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h2 {
+            color: var(--verde-oscuro);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+            border: none;
+            border-radius: 8px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO CON MENÚ HAMBURGUESA -->
+    <header>
+        <div class="logo-text">🐙 EL PULPO</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#">Inicio</a>
+            <a href="#">¿Cómo funciona?</a>
+            <a href="#">Mis Tickets</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- IMAGEN DE PORTADA -->
+    <div class="portada-container">
+        <!-- Aquí se carga tu imagen -->
+        <img src="portada-platanos-el-pulpo.jpg" alt="Plátanos El Pulpo" onerror="this.src='https://via.placeholder.com/800x400?text=portada-platanos-el-pulpo.jpg'">
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL (TARJETA DIGITAL) -->
+    <main class="main-container">
+        <div class="ticket-card" id="tarjetaTicket" style="display: none;">
+            <div class="ticket-header">
+                <h1>¡Hola, <span id="lblNombre">Cliente</span>!</h1>
+                <p>Este es tu ticket oficial del sorteo semanal.</p>
+            </div>
+            
+            <div class="ticket-body">
+                <div class="info-row">
+                    <span class="info-label">Tu celular (ID):</span>
+                    <span class="info-value" id="lblCelular">000-0000000</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Referido por:</span>
+                    <span class="info-value" id="lblReferido" style="color: #888; font-size: 0.85rem;">Nadie (Eres el primero)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Próximo Sorteo:</span>
+                    <span class="info-value" id="lblFechaSorteo">Calculando...</span>
+                </div>
+
+                <div class="highlight-ticket">
+                    <h2>Tus Tickets para el Sorteo</h2>
+                    <div class="numero" id="lblTickets">1</div>
+                    <p style="font-size: 0.8rem; color: #666;">Sorteamos 1 bolsa de plátanos cada sábado.</p>
+                </div>
+            </div>
+
+            <div class="ticket-footer">
+                <button class="btn-compartir" onclick="compartirWhatsApp()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.6.7.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.8 9.8 0 1 1 8.3 4.6ZM12 .2C5.5.2.2 5.5.2 12c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.6A11.8 11.8 0 0 0 23.8 12C23.8 5.5 18.5.2 12 .2Z"/></svg>
+                    Compartir y Ganar
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <p class="nota-comunidad">"Esto es solo el comienzo. Un proyecto que beneficia a la comunidad."</p>
+
+    <!-- MODAL DE REGISTRO INICIAL -->
+    <div class="modal-overlay active" id="modalRegistro">
+        <div class="modal-content">
+            <h2>¡Bienvenido a Plátanos El Pulpo!</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Regístrate para generar tu ticket de sorteo y empezar a ganar.</p>
+            <input type="text" id="inputNombre" placeholder="Tu Nombre y Apellido" required>
+            <input type="tel" id="inputCelular" placeholder="Tu número de WhatsApp" required>
+            <button onclick="registrarCliente()">Generar mi Ticket</button>
+        </div>
+    </div>
+
+    <!-- =========================================
+         JAVASCRIPT (LÓGICA)
+         ========================================= -->
+    <script>
+        // 1. Menú Hamburguesa
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // 2. Lógica de Fecha (Próximo Sábado)
+        function calcularProximoSabado() {
+            const hoy = new Date();
+            const diaSemana = hoy.getDay(); // 0 es domingo, 6 es sábado
+            const diasParaSabado = (6 - diaSemana + 7) % 7 || 7; // Si hoy es sábado, cuenta para el próximo
+            const proximoSabado = new Date(hoy);
+            proximoSabado.setDate(hoy.getDate() + diasParaSabado);
+            
+            const opciones = { day: 'numeric', month: 'long', year: 'numeric' };
+            return proximoSabado.toLocaleDateString('es-ES', opciones);
+        }
+
+        // 3. Variables globales del cliente
+        let clienteActual = {
+            nombre: '',
+            celular: '',
+            referidoPor: null,
+            tickets: 1
+        };
+
+        // 4. Iniciar y revisar si viene por enlace de referido
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('lblFechaSorteo').innerText = calcularProximoSabado();
+            
+            // Revisar si la URL tiene el parámetro ?ref= (Ej: ?ref=04141234567)
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('ref');
+            if (ref) {
+                clienteActual.referidoPor = ref;
+                clienteActual.tickets += 1; // Bono por registrarse con referido
+            }
+        });
+
+        // 5. Registrar Cliente
+        function registrarCliente() {
+            const nombre = document.getElementById('inputNombre').value.trim();
+            const celular = document.getElementById('inputCelular').value.trim();
+
+            if (nombre === '' || celular === '') {
+                alert('Por favor, llena ambos campos para generar tu ticket.');
+                return;
+            }
+
+            // Guardar datos en la memoria temporal
+            clienteActual.nombre = nombre;
+            clienteActual.celular = celular;
+
+            // Cambiar la pantalla
+            document.getElementById('modalRegistro').classList.remove('active');
+            document.getElementById('tarjetaTicket').style.display = 'block';
+
+            // Rellenar los datos en la tarjeta
+            document.getElementById('lblNombre').innerText = clienteActual.nombre;
+            document.getElementById('lblCelular').innerText = clienteActual.celular;
+            
+            if (clienteActual.referidoPor) {
+                document.getElementById('lblReferido').innerText = clienteActual.referidoPor;
+                document.getElementById('lblReferido').style.color = '#4caf50';
+                document.getElementById('lblReferido').style.fontWeight = 'bold';
+            }
+
+            document.getElementById('lblTickets').innerText = clienteActual.tickets;
+        }
+
+        // 6. Compartir por WhatsApp
+        function compartirWhatsApp() {
+            // El enlace llevará el número del cliente para que sus amigos lo refieran a él
+            const enlaceBase = window.location.origin + window.location.pathname;
+            const enlaceReferido = `${enlaceBase}?ref=${clienteActual.celular}`;
+            
+            const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte, generar tu ticket y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
+            
+            const urlWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+    </script>
+</body>
+</html>
