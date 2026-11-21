@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plátanos El Pulpo - Carrusel Premium</title>
+    <title>Plátanos El Pulpo - SCI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --verde-oscuro: #0f2e14;
             --verde-medio: #1f5c2c;
+            --verde-claro: #4caf50;
             --amarillo: #ffcc00;
             --blanco: #ffffff;
             --gris-fondo: #f4f7f6;
+            --texto: #222;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--gris-fondo); color: #333; overflow-x: hidden; }
+        body { background-color: var(--gris-fondo); color: var(--texto); overflow-x: hidden; }
 
-        /* --- HEADER PROFESIONAL --- */
+        /* --- 1. HEADER Y MENÚ (BIEN GRANDE) --- */
         header {
             background-color: var(--verde-oscuro);
             padding: 15px 20px;
@@ -26,85 +28,69 @@
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .logo-text { color: var(--blanco); font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;}
-        .bandera-ve { display: flex; flex-direction: column; width: 24px; height: 16px; border-radius: 2px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .logo-text { 
+            color: var(--blanco); font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; 
+            display: flex; align-items: center; gap: 10px;
+        }
+        /* Bandera de Venezuela en CSS */
+        .bandera-ve { display: flex; flex-direction: column; width: 28px; height: 18px; border-radius: 3px; overflow: hidden; }
         .bandera-ve div { flex: 1; }
-        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 7px; color: #0033a0; line-height: 1; }
+        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 8px; color: #0033a0; line-height: 1; }
         .bandera-ve .azul { background: #0033a0; }
         .bandera-ve .rojo { background: #d90000; }
+
+        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 6px; padding: 5px; }
+        .hamburger span { width: 30px; height: 4px; background-color: var(--amarillo); border-radius: 3px; transition: 0.3s; }
         
-        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 25px; height: 3px; background-color: var(--blanco); border-radius: 3px; transition: 0.3s; }
-        .nav-menu { display: none; position: absolute; top: 60px; left: 0; width: 100%; background-color: var(--verde-oscuro); flex-direction: column; padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.2); }
+        .nav-menu { 
+            display: none; position: absolute; top: 65px; left: 0; width: 100%; 
+            background-color: var(--verde-medio); flex-direction: column; padding: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+        }
         .nav-menu.active { display: flex; }
-        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 15px 0; font-weight: 800; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; }
 
-        /* --- CONTENEDOR PRINCIPAL DEL CARRUSEL --- */
-        .main-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 60px); /* Ocupa el resto de la pantalla */
-            padding: 20px 10px;
-            perspective: 1500px; /* Perspectiva más amplia para el formato vertical */
-        }
-
-        /* --- TARJETA VERTICAL (EL CARRUSEL) --- */
-        .tarjeta-premium {
-            width: 100%;
-            max-width: 380px; /* Ancho controlado para que no se estire feo en PC */
-            height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
-            max-height: 650px;
-            background: var(--blanco);
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        /* --- TEXTO SUPERIOR FIJO (Para que se lea grande) --- */
-        .texto-superior {
-            background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
-            padding: 25px 20px 15px 20px;
+        /* --- 2. TÍTULO GIGANTE (LO QUE NO SE VEÍA) --- */
+        .hero-section {
+            background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
+            padding: 40px 20px 30px 20px;
             text-align: center;
-            z-index: 10;
-            border-bottom: 2px dashed #eee;
+            color: var(--blanco);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
-        .texto-superior h2 {
-            font-size: 1.4rem;
+        .hero-section h1 {
+            font-size: 2.2rem; /* LETRA ENORME */
             font-weight: 900;
-            color: var(--verde-oscuro);
-            line-height: 1.2;
-            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: var(--amarillo);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .texto-superior p {
-            font-size: 0.9rem;
-            color: var(--verde-medio);
+        .hero-section h2 {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-top: 5px;
+            color: #d1e7d3;
         }
 
-        /* --- ESCENARIO 3D DEL CARRUSEL --- */
+        /* --- 3. CARRUSEL VERTICAL (LAS FOTOS GRANDES) --- */
         .carrusel-contenedor {
-            flex: 1; /* Ocupa todo el espacio restante hacia abajo */
-            position: relative;
             width: 100%;
+            height: 400px; /* Altura fija para el celular */
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 1200px;
-            background-color: #fafafa;
+            margin-top: 20px;
             overflow: hidden;
         }
 
         .carrusel-puerta {
-            width: 260px; /* Ancho de la foto */
-            height: 350px; /* Alto de la foto (Rectangular) */
+            width: 240px;  /* Ancho */
+            height: 340px; /* Alto (Rectangular) */
             position: relative;
             transform-style: preserve-3d;
             transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -117,40 +103,73 @@
             border-radius: 15px;
             overflow: hidden;
             background-color: var(--blanco);
-            border: 6px solid var(--blanco);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 4px solid var(--blanco);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        /* Posicionamiento 3D para formato vertical */
-        .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
-        .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(250px); }
-        .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(250px); }
+        /* Posicionamiento 3D */
+        .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
+        .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
+        .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
 
-        /* Imágenes adaptadas al marco vertical */
         .cara-carrusel img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Rellena el marco vertical */
+            object-fit: cover;
             display: block;
         }
 
-        /* Ajuste para pantallas más pequeñas */
-        @media (max-width: 400px) {
-            .carrusel-puerta { width: 220px; height: 300px; }
-            .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
-            .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(220px); }
-            .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(220px); }
-            .texto-superior h2 { font-size: 1.2rem; }
+        /* --- 4. SECCIÓN DE INFORMACIÓN (EL TEXTO IMPORTANTE) --- */
+        .info-section {
+            padding: 30px 20px;
+            background: var(--blanco);
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .info-section h3 {
+            font-size: 1.4rem; font-weight: 900; color: var(--verde-oscuro);
+            margin-bottom: 10px; text-align: center;
+        }
+        .info-section p {
+            font-size: 1rem; color: #555; line-height: 1.6; text-align: center;
+            margin-bottom: 20px;
         }
 
+        /* --- 5. BOTONES DE ACCIÓN (SAN FAMILIAR Y TICKETS) --- */
+        .acciones-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .btn-accion {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 18px; border-radius: 15px; font-weight: 800; font-size: 1.1rem;
+            text-decoration: none; text-align: center; transition: transform 0.2s;
+        }
+        .btn-accion:active { transform: scale(0.98); }
+        
+        .btn-sci { background: var(--verde-medio); color: var(--blanco); box-shadow: 0 6px 15px rgba(31, 92, 44, 0.3); }
+        .btn-san { background: var(--amarillo); color: var(--verde-oscuro); box-shadow: 0 6px 15px rgba(255, 204, 0, 0.3); }
+
+        /* --- 6. EXPLICACIÓN DEL SAN FAMILIAR --- */
+        .san-section {
+            background: #fff8e1;
+            border: 2px dashed var(--amarillo);
+            padding: 25px 20px;
+            margin: 0 20px 30px 20px;
+            border-radius: 20px;
+        }
+        .san-section h3 { color: #b38700; font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; text-align: center; }
+        .san-section p { font-size: 0.95rem; color: #555; line-height: 1.6; text-align: center; }
+
+        /* Footer simple */
+        footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
-    <!-- HEADER CON MENÚ HAMBURGUESA -->
+    <!-- ENCABEZADO CON MENÚ -->
     <header>
         <div class="logo-text">
             <div class="bandera-ve">
@@ -158,49 +177,64 @@
                 <div class="azul"></div>
                 <div class="rojo"></div>
             </div>
-            PLÁTANOS EL PULPO
+            EL PULPO
         </div>
+        <!-- MENÚ HAMBURGUESA GIGANTE -->
         <div class="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
+        <!-- OPCIONES DEL MENÚ -->
         <nav class="nav-menu" id="navMenu">
-            <a href="#">🐙 Inicio</a>
             <a href="#">🛒 Comprar Plátanos</a>
-            <a href="#">🏠 Mi San Familiar SCI</a>
-            <a href="#">🎟️ Mis Tickets</a>
+            <a href="#">🎟️ Generar mi Ticket</a>
+            <a href="#">🤝 Mi San Familiar SCI</a>
+            <a href="#">🏆 Sorteos y Premios</a>
         </nav>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
-    <div class="main-wrapper">
-        
-        <!-- TARJETA PREMIUM (RECTANGULAR / VERTICAL) -->
-        <div class="tarjeta-premium">
-            
-            <!-- Texto Grande Arriba (Fijo) -->
-            <div class="texto-superior">
-                <h2>¡Mientras más tickets,<br>más oportunidades!</h2>
-                <p>Gana una bolsa de plátanos cada sábado.</p>
-            </div>
-
-            <!-- El Carrusel 3D Abajo -->
-            <div class="carrusel-contenedor">
-                <div class="carrusel-puerta" id="miCarrusel">
-                    <div class="cara-carrusel"><img src="1.jpg" alt="Premio 1"></div>
-                    <div class="cara-carrusel"><img src="2.jpg" alt="Premio 2"></div>
-                    <div class="cara-carrusel"><img src="3.jpg" alt="Premio 3"></div>
-                </div>
-            </div>
-
-        </div>
-
+    <!-- TÍTULO GIGANTE -->
+    <div class="hero-section">
+        <h1>Mientras más tickets,<br>más oportunidades<br>tienes de ganar.</h1>
+        <h2>Cada sábado sorteamos una bolsa de plátanos.</h2>
     </div>
 
-    <script>
-        // Menú
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+    <!-- CARRUSEL VERTICAL -->
+    <div class="carrusel-contenedor">
+        <div class="carrusel-puerta" id="miCarrusel">
+            <div class="cara-carrusel"><img src="1.jpg" alt="Imagen 1"></div>
+            <div class="cara-carrusel"><img src="2.jpg" alt="Imagen 2"></div>
+            <div class="cara-carrusel"><img src="3.jpg" alt="Imagen 3"></div>
+        </div>
+    </div>
 
-        // Carrusel
+    <!-- INFORMACIÓN DEL ECOSISTEMA -->
+    <div class="info-section">
+        <h3>¿Qué es el SCI?</h3>
+        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
+        
+        <div class="acciones-grid">
+            <a href="#" class="btn-accion btn-sci">🎟️ Quiero mi Ticket de Plátanos</a>
+            <a href="#" class="btn-accion btn-san">🏠 Ver mi San Familiar</a>
+        </div>
+    </div>
+
+    <!-- DETALLE DEL SAN FAMILIAR -->
+    <div class="san-section">
+        <h3>🤝 ¿Qué es el San Familiar Exclusivo?</h3>
+        <p>Es un grupo privado de <strong>10 personas</strong> que se conocen y se apoyan. Un <strong>patrocinador</strong> gestiona el grupo, y los otros 9 reciben los beneficios. Todos deben ser gente responsable y de confianza.</p>
+    </div>
+
+    <footer>
+        <p>Plátanos El Pulpo &copy; 2026 - Sistema SCI</p>
+    </footer>
+
+    <script>
+        // Lógica del Menú
+        function toggleMenu() { 
+            document.getElementById('navMenu').classList.toggle('active'); 
+        }
+
+        // Lógica del Carrusel (7 segundos)
         let anguloActual = 0;
         const carrusel = document.getElementById('miCarrusel');
         
