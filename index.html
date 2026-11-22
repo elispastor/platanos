@@ -12,13 +12,13 @@
             --amarillo: #ffcc00;
             --blanco: #ffffff;
             --gris-fondo: #f4f7f6;
-            --texto: #222;
+            --texto: #333;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--gris-fondo); color: var(--texto); overflow-x: hidden; }
 
-        /* HEADER */
+        /* --- HEADER Y MENÚ --- */
         header {
             background-color: var(--verde-oscuro);
             padding: 15px 20px;
@@ -29,78 +29,95 @@
             top: 0;
             z-index: 1000;
         }
-        .logo-text { color: var(--blanco); font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .bandera-ve { display: flex; flex-direction: column; width: 28px; height: 18px; border-radius: 3px; overflow: hidden; }
+        .logo-text { color: var(--blanco); font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .bandera-ve { display: flex; flex-direction: column; width: 24px; height: 16px; border-radius: 2px; overflow: hidden; }
         .bandera-ve div { flex: 1; }
-        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 8px; color: #0033a0; }
+        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 7px; color: #0033a0; }
         .bandera-ve .azul { background: #0033a0; }
         .bandera-ve .rojo { background: #d90000; }
 
-        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 6px; padding: 5px; }
-        .hamburger span { width: 30px; height: 4px; background-color: var(--amarillo); border-radius: 3px; }
+        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
+        .hamburger span { width: 28px; height: 3px; background-color: var(--amarillo); border-radius: 3px; transition: 0.3s; }
         
-        .nav-menu { display: none; position: absolute; top: 65px; left: 0; width: 100%; background-color: var(--verde-medio); flex-direction: column; padding: 20px; }
+        .nav-menu { 
+            display: none; position: absolute; top: 60px; left: 0; width: 100%; 
+            background-color: var(--verde-medio); flex-direction: column; padding: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+        }
         .nav-menu.active { display: flex; }
-        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 15px 0; font-weight: 800; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* TÍTULO GIGANTE */
+        /* --- TÍTULO GIGANTE --- */
         .hero-section {
             background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
-            padding: 40px 20px 30px 20px;
+            padding: 30px 20px 20px 20px;
             text-align: center;
             color: var(--blanco);
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
         }
-        .hero-section h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; color: var(--amarillo); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .hero-section h2 { font-size: 1.1rem; font-weight: 600; color: #d1e7d3; }
+        .hero-section h1 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--amarillo); }
+        .hero-section h2 { font-size: 1rem; font-weight: 400; color: #d1e7d3; }
 
-        /* CARRUSEL */
-        .carrusel-contenedor { width: 100%; height: 400px; display: flex; justify-content: center; align-items: center; perspective: 1200px; margin-top: 20px; overflow: hidden; }
-        .carrusel-puerta { width: 240px; height: 340px; position: relative; transform-style: preserve-3d; transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
-        
+        /* --- CARRUSEL 3D (UNIFORME) --- */
+        .carrusel-contenedor {
+            width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;
+            perspective: 1200px; margin-top: 10px; overflow: hidden;
+        }
+        .carrusel-puerta {
+            width: 240px; height: 340px; position: relative; transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
         .cara-carrusel {
-            position: absolute; width: 100%; height: 100%; border-radius: 15px;
-            overflow: hidden; background-color: var(--verde-oscuro); /* Fondo por si la imagen falla */
-            border: 4px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            display: flex; justify-content: center; align-items: center;
+            position: absolute; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
+            background-color: var(--blanco); border: 5px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
-
-        /* Texto por si la imagen no carga */
-        .cara-carrusel::before {
-            content: '🍌 PLÁTANOS EL PULPO';
-            position: absolute; color: var(--amarillo); font-weight: 900; font-size: 1.2rem;
-            text-align: center; z-index: 1; opacity: 0.5;
-        }
-
+        /* Las 3 caras se distribuyen en 120 grados */
         .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
         .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
         .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
 
         .cara-carrusel img {
-            width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 2;
+            width: 100%; height: 100%; object-fit: cover; display: block;
         }
 
-        /* INFORMACIÓN */
-        .info-section { padding: 30px 20px; background: var(--blanco); margin: 20px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .info-section h3 { font-size: 1.4rem; font-weight: 900; color: var(--verde-oscuro); margin-bottom: 10px; text-align: center; }
-        .info-section p { font-size: 1rem; color: #555; line-height: 1.6; text-align: center; margin-bottom: 20px; }
+        /* --- SECCIÓN DE BOTONES Y CONTACTO --- */
+        .acciones-section {
+            padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;
+        }
+        .btn {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px; border-radius: 12px; font-weight: 800; font-size: 1rem;
+            text-decoration: none; text-align: center; transition: 0.2s; border: none; cursor: pointer; width: 100%;
+        }
+        .btn-wsp { background-color: #25D366; color: white; }
+        .btn-compartir { background-color: var(--verde-oscuro); color: var(--amarillo); }
+        .btn-panel { background-color: var(--amarillo); color: var(--verde-oscuro); }
 
-        .acciones-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .btn-accion { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; border-radius: 15px; font-weight: 800; font-size: 1.1rem; text-decoration: none; text-align: center; }
-        .btn-sci { background: var(--verde-medio); color: var(--blanco); }
-        .btn-san { background: var(--amarillo); color: var(--verde-oscuro); }
+        /* --- PANEL DE CONTROL DEL AFILIADO --- */
+        .panel-afiliado {
+            background: var(--blanco); margin: 20px; padding: 20px; border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--verde-medio);
+        }
+        .panel-afiliado h3 { color: var(--verde-oscuro); margin-bottom: 15px; text-align: center; }
+        .panel-stats { display: flex; justify-content: space-around; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
+        .stat-item { text-align: center; }
+        .stat-numero { font-size: 1.8rem; font-weight: 900; color: var(--verde-medio); display: block; }
+        .stat-label { font-size: 0.8rem; color: #666; }
+        
+        .lista-referidos { list-style: none; padding: 0; }
+        .lista-referidos li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; }
+        .lista-referidos li span:last-child { color: var(--verde-medio); font-weight: bold; }
 
-        /* SAN FAMILIAR */
-        .san-section { background: #fff8e1; border: 2px dashed var(--amarillo); padding: 25px 20px; margin: 0 20px 30px 20px; border-radius: 20px; }
-        .san-section h3 { color: #b38700; font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; text-align: center; }
-        .san-section p { font-size: 0.95rem; color: #555; line-height: 1.6; text-align: center; }
+        /* --- EXPLICACIÓN SCI --- */
+        .info-sci { background: #e8f5e9; margin: 20px; padding: 20px; border-radius: 15px; border-left: 5px solid var(--verde-medio); }
+        .info-sci h3 { color: var(--verde-oscuro); margin-bottom: 10px; font-size: 1.2rem; }
+        .info-sci p { font-size: 0.9rem; line-height: 1.5; color: #444; }
 
         footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="logo-text">
             <div class="bandera-ve">
@@ -110,52 +127,97 @@
             </div>
             EL PULPO
         </div>
-        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
         <nav class="nav-menu" id="navMenu">
+            <a href="#">🏠 Inicio</a>
             <a href="#">🛒 Comprar Plátanos</a>
             <a href="#">🎟️ Generar mi Ticket</a>
-            <a href="#">🤝 Mi San Familiar SCI</a>
-            <a href="#">🏆 Sorteos y Premios</a>
+            <a href="#">📞 Contacto</a>
         </nav>
     </header>
 
+    <!-- TÍTULO -->
     <div class="hero-section">
-        <h1>Mientras más tickets,<br>más oportunidades<br>tienes de ganar.</h1>
+        <h1>Mientras más tickets,<br>más oportunidades tienes.</h1>
         <h2>Cada sábado sorteamos una bolsa de plátanos.</h2>
     </div>
 
+    <!-- CARRUSEL -->
     <div class="carrusel-contenedor">
         <div class="carrusel-puerta" id="miCarrusel">
-     <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Premio 1"></div>
-<div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Premio 2"></div>
-<div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Premio 3"></div>
-
-    <div class="info-section">
-        <h3>¿Qué es el SCI?</h3>
-        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
-        
-        <div class="acciones-grid">
-            <a href="#" class="btn-accion btn-sci">🎟️ Quiero mi Ticket de Plátanos</a>
-            <a href="#" class="btn-accion btn-san">🏠 Ver mi San Familiar</a>
+            <!-- Aquí usamos las URLs Raw de GitHub para que carguen de una vez -->
+            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1"></div>
+            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2"></div>
+            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3"></div>
         </div>
     </div>
 
-    <div class="san-section">
-        <h3>🤝 ¿Qué es el San Familiar Exclusivo?</h3>
-        <p>Es un grupo privado de <strong>10 personas</strong> que se conocen y se apoyan. Un <strong>patrocinador</strong> gestiona el grupo, y los otros 9 reciben los beneficios. Todos deben ser gente responsable y de confianza.</p>
+    <!-- BOTONES PRINCIPALES -->
+    <div class="acciones-section">
+        <a href="https://wa.me/584227159158" class="btn btn-wsp" target="_blank">📱 Contactar al Pulpo</a>
+        <button class="btn btn-compartir" onclick="compartirWhatsApp()">📤 Compartir y Ganar Tickets</button>
+        <a href="#panel" class="btn btn-panel">👤 Ver mi Panel de Control</a>
+    </div>
+
+    <!-- PANEL DEL AFILIADO -->
+    <div class="panel-afiliado" id="panel">
+        <h3>Mi Oficina Virtual</h3>
+        <div class="panel-stats">
+            <div class="stat-item">
+                <span class="stat-numero">3</span>
+                <span class="stat-label">Referidos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-numero">4</span>
+                <span class="stat-label">Tickets</span>
+            </div>
+        </div>
+        
+        <h4 style="margin-bottom: 10px; font-size: 1rem; color: #555;">Tus afiliados recientes:</h4>
+        <ul class="lista-referidos">
+            <li><span>María Rodríguez</span> <span>+1 Ticket</span></li>
+            <li><span>Carlos Pérez</span> <span>+1 Ticket</span></li>
+            <li><span>José Gómez</span> <span>+1 Ticket</span></li>
+        </ul>
+        <p style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 15px;">Los puntos acumulados se pueden cambiar por más tickets.</p>
+    </div>
+
+    <!-- EXPLICACIÓN SCI -->
+    <div class="info-sci">
+        <h3>¿Qué es el SCI?</h3>
+        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
     </div>
 
     <footer>Plátanos El Pulpo &copy; 2026 - SCI</footer>
 
     <script>
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        // 1. Función del Menú (¡Ahora sí funciona!)
+        function toggleMenu() { 
+            document.getElementById('navMenu').classList.toggle('active'); 
+        }
 
+        // 2. Lógica del Carrusel
         let anguloActual = 0;
         const carrusel = document.getElementById('miCarrusel');
         setInterval(() => {
             anguloActual -= 120; 
             carrusel.style.transform = `rotateY(${anguloActual}deg)`;
         }, 7000); 
+
+        // 3. Función para Compartir (El enlace de referido)
+        function compartirWhatsApp() {
+            // Simulamos que el teléfono de este usuario es este. 
+            // En la vida real, se leería de la URL o de un inicio de sesión.
+            const miTelefono = "04244259543"; 
+            const enlaceBase = window.location.origin + window.location.pathname;
+            const enlaceReferido = `${enlaceBase}?ref=${miTelefono}`;
+            
+            const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
+            
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
     </script>
 </body>
 </html>
