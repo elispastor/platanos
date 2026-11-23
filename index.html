@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plátanos El Pulpo - SCI</title>
+    <title>Plátanos El Pulpo - El Giro del Pulpo</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,208 +18,256 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--gris-fondo); color: var(--texto); overflow-x: hidden; }
 
-        /* --- HEADER Y MENÚ --- */
-        header {
-            background-color: var(--verde-oscuro);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        /* HEADER */
+        header { background-color: var(--verde-oscuro); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .logo-text { color: var(--blanco); font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .bandera-ve { display: flex; flex-direction: column; width: 24px; height: 16px; border-radius: 2px; overflow: hidden; }
-        .bandera-ve div { flex: 1; }
-        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 7px; color: #0033a0; }
-        .bandera-ve .azul { background: #0033a0; }
-        .bandera-ve .rojo { background: #d90000; }
-
         .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
-        .hamburger span { width: 28px; height: 3px; background-color: var(--amarillo); border-radius: 3px; transition: 0.3s; }
-        
-        .nav-menu { 
-            display: none; position: absolute; top: 60px; left: 0; width: 100%; 
-            background-color: var(--verde-medio); flex-direction: column; padding: 20px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
-        }
+        .hamburger span { width: 28px; height: 3px; background-color: var(--amarillo); border-radius: 3px; }
+        .nav-menu { display: none; position: absolute; top: 60px; left: 0; width: 100%; background-color: var(--verde-medio); flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .nav-menu.active { display: flex; }
-        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- TÍTULO GIGANTE --- */
-        .hero-section {
-            background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
-            padding: 30px 20px 20px 20px;
-            text-align: center;
-            color: var(--blanco);
-        }
+        /* TÍTULO */
+        .hero-section { background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%); padding: 30px 20px 20px 20px; text-align: center; color: var(--blanco); }
         .hero-section h1 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--amarillo); }
         .hero-section h2 { font-size: 1rem; font-weight: 400; color: #d1e7d3; }
 
-        /* --- CARRUSEL 3D (UNIFORME) --- */
-        .carrusel-contenedor {
-            width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;
-            perspective: 1200px; margin-top: 10px; overflow: hidden;
-        }
-        .carrusel-puerta {
-            width: 240px; height: 340px; position: relative; transform-style: preserve-3d;
-            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .cara-carrusel {
-            position: absolute; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
-            background-color: var(--blanco); border: 5px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-        /* Las 3 caras se distribuyen en 120 grados */
-        .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
-        .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
-        .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
-
-       .cara-carrusel img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    object-position: center; /* ¡ESTO ES LA MAGIA! Centra la imagen perfectamente */
-    display: block;
-}
-
-        /* --- SECCIÓN DE BOTONES Y CONTACTO --- */
-        .acciones-section {
-            padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;
-        }
-        .btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 15px; border-radius: 12px; font-weight: 800; font-size: 1rem;
-            text-decoration: none; text-align: center; transition: 0.2s; border: none; cursor: pointer; width: 100%;
-        }
+        /* BOTONES DE ACCIÓN */
+        .acciones-section { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 12px; font-weight: 800; font-size: 1rem; text-decoration: none; text-align: center; border: none; cursor: pointer; width: 100%; }
+        .btn-ticket { background-color: var(--amarillo); color: var(--verde-oscuro); box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4); font-size: 1.1rem;}
         .btn-wsp { background-color: #25D366; color: white; }
-        .btn-compartir { background-color: var(--verde-oscuro); color: var(--amarillo); }
-        .btn-panel { background-color: var(--amarillo); color: var(--verde-oscuro); }
 
-        /* --- PANEL DE CONTROL DEL AFILIADO --- */
-        .panel-afiliado {
-            background: var(--blanco); margin: 20px; padding: 20px; border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--verde-medio);
-        }
-        .panel-afiliado h3 { color: var(--verde-oscuro); margin-bottom: 15px; text-align: center; }
-        .panel-stats { display: flex; justify-content: space-around; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
-        .stat-item { text-align: center; }
-        .stat-numero { font-size: 1.8rem; font-weight: 900; color: var(--verde-medio); display: block; }
-        .stat-label { font-size: 0.8rem; color: #666; }
+        /* MODAL DEL TICKET (CON MICRÓFONO) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--blanco); padding: 30px 20px; border-radius: 20px; width: 90%; max-width: 350px; text-align: center; }
+        .modal-content h2 { color: var(--verde-oscuro); margin-bottom: 15px; font-size: 1.3rem; }
         
-        .lista-referidos { list-style: none; padding: 0; }
-        .lista-referidos li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; }
-        .lista-referidos li span:last-child { color: var(--verde-medio); font-weight: bold; }
+        .input-group { position: relative; margin-bottom: 15px; }
+        .input-group input { width: 100%; padding: 15px 45px 15px 15px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; }
+        /* Botón del micrófono */
+        .btn-mic { 
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%); 
+            background: var(--verde-medio); color: white; border: none; width: 35px; height: 35px; 
+            border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+        }
+        .btn-mic.escuchando { background: #e74c3c; animation: pulse 1.5s infinite; }
 
-        /* --- EXPLICACIÓN SCI --- */
-        .info-sci { background: #e8f5e9; margin: 20px; padding: 20px; border-radius: 15px; border-left: 5px solid var(--verde-medio); }
-        .info-sci h3 { color: var(--verde-oscuro); margin-bottom: 10px; font-size: 1.2rem; }
-        .info-sci p { font-size: 0.9rem; line-height: 1.5; color: #444; }
+        @keyframes pulse { 0% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-50%) scale(1.1); } 100% { transform: translateY(-50%) scale(1); } }
+
+        .modal-content button.btn-generar { width: 100%; padding: 15px; background: var(--verde-oscuro); color: var(--blanco); border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1rem; margin-top: 10px; }
+
+        /* TARJETA DEL TICKET */
+        .ticket-generado { display: none; background: var(--blanco); border-radius: 20px; padding: 25px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 8px solid var(--verde-medio); margin: 20px auto; max-width: 350px; text-align: center; }
+        .ticket-generado h2 { color: var(--verde-medio); font-size: 1.5rem; margin-bottom: 5px; }
+        .ticket-generado .numero-ticket { font-size: 3rem; font-weight: 900; color: var(--amarillo); margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
+        
+        /* SECCIÓN DE LA RULETA (EL GIRO DEL PULPO) */
+        .ruleta-section { padding: 30px 20px; background: var(--blanco); margin: 20px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .ruleta-section h2 { font-size: 1.5rem; color: var(--verde-oscuro); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .lista-tickets { background: #f9f9f9; border: 2px dashed var(--verde-medio); padding: 15px; border-radius: 10px; text-align: left; }
+        .ticket-item { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .ticket-item:last-child { border-bottom: none; }
+        .ticket-item .nombre { font-weight: 800; color: var(--verde-oscuro); font-size: 0.9rem; }
+        .ticket-item .tipo { font-size: 0.75rem; color: #666; }
+        .ticket-item .telefono { font-weight: 600; color: var(--verde-medio); font-size: 0.85rem; }
 
         footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
-        <div class="logo-text">
-            <div class="bandera-ve">
-                <div class="amarillo">★ ★</div>
-                <div class="azul"></div>
-                <div class="rojo"></div>
-            </div>
-            Plátanos EL PULPO
-        </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="logo-text">🐙 EL PULPO</div>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
         <nav class="nav-menu" id="navMenu">
-            <a href="#">🏠 Inicio</a>
-            <a href="#">🛒 Comprar Plátanos</a>
-            <a href="#">🎟️ Generar mi Ticket</a>
-            <a href="#">📞 Contacto</a>
+            <a href="#" onclick="toggleMenu()">🏠 Inicio</a>
+            <a href="#" onclick="abrirModal(); toggleMenu()">🎟️ Generar mi Ticket</a>
         </nav>
     </header>
 
-    <!-- TÍTULO -->
     <div class="hero-section">
         <h1>Mientras más tickets,<br>más oportunidades tienes.</h1>
-        <h2>Cada sábado sorteamos una bolsa de plátanos.</h2>
+        <h2>Impulsa tu suerte en el Giro del Pulpo.</h2>
     </div>
 
-    <!-- CARRUSEL -->
-    <div class="carrusel-contenedor">
-        <div class="carrusel-puerta" id="miCarrusel">
-            <!-- Aquí usamos las URLs Raw de GitHub para que carguen de una vez -->
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3"></div>
-        </div>
-    </div>
-
-    <!-- BOTONES PRINCIPALES -->
     <div class="acciones-section">
-        <a href="https://wa.me/584227159158" class="btn btn-wsp" target="_blank">📱 Contactar al Pulpo</a>
-        <button class="btn btn-compartir" onclick="compartirWhatsApp()">📤 Compartir y Ganar Tickets</button>
-        <a href="#panel" class="btn btn-panel">👤 Ver mi Panel de Control</a>
+        <button class="btn btn-ticket" onclick="abrirModal()">🎟️ Quiero mi Ticket de Sorteo</button>
+        <a href="https://wa.me/584244259543" class="btn btn-wsp" target="_blank">📱 Contactar al Pulpo</a>
     </div>
 
-    <!-- PANEL DEL AFILIADO -->
-    <div class="panel-afiliado" id="panel">
-        <h3>Mi Oficina Virtual</h3>
-        <div class="panel-stats">
-            <div class="stat-item">
-                <span class="stat-numero">3</span>
-                <span class="stat-label">Referidos</span>
+    <!-- TARJETA DEL TICKET -->
+    <div class="ticket-generado" id="tarjetaTicket">
+        <h2>¡Ticket Generado!</h2>
+        <p>Guarda este ticket, es tu pase a la suerte.</p>
+        <div class="numero-ticket" id="ticketId">0000</div>
+        <p><strong>Nombre:</strong> <span id="ticketNombre">Cliente</span></p>
+        <p><strong>Celular:</strong> <span id="ticketCelular">000</span></p>
+        <span class="fecha" id="ticketFecha" style="font-weight: 800; color: var(--verde-oscuro); margin-top: 15px; display: block;">Sorteo: Próximo Sábado</span>
+        <button class="btn btn-wsp" style="margin-top: 20px;" onclick="compartirTicket()">📤 Compartir con Amigos</button>
+    </div>
+
+    <!-- SECCIÓN DE LA RULETA (EL GIRO DEL PULPO) -->
+    <div class="ruleta-section">
+        <h2>El Giro del Pulpo</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: #555;">Estos son los tickets que están participando hoy:</p>
+        
+        <!-- Aquí se mostrarán los nombres y teléfonos de la lista de participantes -->
+        <div class="lista-tickets" id="listaParticipantes">
+            <!-- Simulamos algunos participantes para que veas cómo se verá -->
+            <div class="ticket-item">
+                <div>
+                    <div class="nombre">Pedro Pérez</div>
+                    <div class="tipo">Ticket por Compra</div>
+                </div>
+                <div class="telefono">0424-1234567</div>
             </div>
-            <div class="stat-item">
-                <span class="stat-numero">4</span>
-                <span class="stat-label">Tickets</span>
+            <div class="ticket-item">
+                <div>
+                    <div class="nombre">María Gómez</div>
+                    <div class="tipo">Ticket por Referido 1</div>
+                </div>
+                <div class="telefono">0414-7654321</div>
+            </div>
+            <div class="ticket-item">
+                <div>
+                    <div class="nombre">Carlos Ruiz</div>
+                    <div class="tipo">Ticket por Referido 2</div>
+                </div>
+                <div class="telefono">0412-5555555</div>
             </div>
         </div>
-        
-        <h4 style="margin-bottom: 10px; font-size: 1rem; color: #555;">Tus afiliados recientes:</h4>
-        <ul class="lista-referidos">
-            <li><span>María Rodríguez</span> <span>+1 Ticket</span></li>
-            <li><span>Carlos Pérez</span> <span>+1 Ticket</span></li>
-            <li><span>José Gómez</span> <span>+1 Ticket</span></li>
-        </ul>
-        <p style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 15px;">Los puntos acumulados se pueden cambiar por más tickets.</p>
     </div>
 
-    <!-- EXPLICACIÓN SCI -->
-    <div class="info-sci">
-        <h3>¿Qué es el SCI?</h3>
-        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
+    <!-- MODAL CON MICRÓFONO -->
+    <div class="modal-overlay" id="modalRegistro">
+        <div class="modal-content">
+            <h2>¡Genera tu Ticket!</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Toca el micrófono y dicta tus datos.</p>
+            
+            <!-- Campo de Nombre con Micrófono -->
+            <div class="input-group">
+                <input type="text" id="inputNombre" placeholder="Tu Nombre y Apellido">
+                <button class="btn-mic" onclick="dictar('inputNombre', this)">🎤</button>
+            </div>
+
+            <!-- Campo de Teléfono con Micrófono -->
+            <div class="input-group">
+                <input type="tel" id="inputCelular" placeholder="Tu número de WhatsApp">
+                <button class="btn-mic" onclick="dictar('inputCelular', this)">🎤</button>
+            </div>
+
+            <button class="btn-generar" onclick="generarTicket()">Generar Ticket Ahora</button>
+        </div>
     </div>
 
     <footer>Plátanos El Pulpo &copy; 2026 - SCI</footer>
 
     <script>
-        // 1. Función del Menú (¡Ahora sí funciona!)
-        function toggleMenu() { 
-            document.getElementById('navMenu').classList.toggle('active'); 
+        // 1. Funciones del Menú
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+
+        // 2. Abrir y Cerrar Modal
+        function abrirModal() { document.getElementById('modalRegistro').classList.add('active'); }
+        function cerrarModal() { document.getElementById('modalRegistro').classList.remove('active'); }
+
+        // 3. RECONOCIMIENTO DE VOZ (LA MAGIA TECNOLÓGICA)
+        function dictar(inputId, boton) {
+            // Verificar si el navegador soporta reconocimiento de voz
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.");
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'es-ES'; // Configurado para español
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            // Cambiar color del botón para indicar que está escuchando
+            boton.classList.add('escuchando');
+            boton.innerText = '🛑';
+
+            recognition.start();
+
+            // Cuando termina de escuchar
+            recognition.onresult = function(event) {
+                const textoDictado = event.results[0][0].transcript;
+                document.getElementById(inputId).value = textoDictado;
+            };
+
+            // Cuando se detiene el micrófono
+            recognition.onend = function() {
+                boton.classList.remove('escuchando');
+                boton.innerText = '🎤';
+            };
+
+            // Si hay un error
+            recognition.onerror = function() {
+                boton.classList.remove('escuchando');
+                boton.innerText = '🎤';
+                alert("No se pudo captar el audio. Intenta de nuevo.");
+            };
         }
 
-        // 2. Lógica del Carrusel
-        let anguloActual = 0;
-        const carrusel = document.getElementById('miCarrusel');
-        setInterval(() => {
-            anguloActual -= 120; 
-            carrusel.style.transform = `rotateY(${anguloActual}deg)`;
-        }, 7000); 
+        // 4. Generar Ticket
+        let clienteActual = { nombre: '', celular: '' };
 
-        // 3. Función para Compartir (El enlace de referido)
-        function compartirWhatsApp() {
-            // Simulamos que el teléfono de este usuario es este. 
-            // En la vida real, se leería de la URL o de un inicio de sesión.
-            const miTelefono = "04244259543"; 
+        function generarTicket() {
+            const nombre = document.getElementById('inputNombre').value.trim();
+            const celular = document.getElementById('inputCelular').value.trim();
+
+            if (nombre === '' || celular === '') {
+                alert('Por favor, llena ambos campos.');
+                return;
+            }
+
+            clienteActual.nombre = nombre;
+            clienteActual.celular = celular;
+
+            const numTicket = Math.floor(1000 + Math.random() * 9000);
+
+            const hoy = new Date();
+            const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
+            const proximoSabado = new Date(hoy);
+            proximoSabado.setDate(hoy.getDate() + diasParaSabado);
+            const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+
+            cerrarModal();
+            
+            // Llenar tarjeta
+            document.getElementById('ticketId').innerText = '#' + numTicket;
+            document.getElementById('ticketNombre').innerText = clienteActual.nombre;
+            document.getElementById('ticketCelular').innerText = clienteActual.celular;
+            document.getElementById('ticketFecha').innerText = 'Próximo Sorteo: Sábado ' + fechaStr;
+            
+            document.getElementById('tarjetaTicket').style.display = 'block';
+            
+            // --- AQUI AGREGAMOS AL NUEVO PARTICIPANTE A LA LISTA DE LA RULETA ---
+            const lista = document.getElementById('listaParticipantes');
+            const nuevoTicket = document.createElement('div');
+            nuevoTicket.className = 'ticket-item';
+            nuevoTicket.innerHTML = `
+                <div>
+                    <div class="nombre">${clienteActual.nombre}</div>
+                    <div class="tipo">Ticket por Compra</div>
+                </div>
+                <div class="telefono">${clienteActual.celular}</div>
+            `;
+            // Lo ponemos de primero en la lista
+            lista.insertBefore(nuevoTicket, lista.firstChild);
+
+            document.getElementById('tarjetaTicket').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 5. Compartir
+        function compartirTicket() {
             const enlaceBase = window.location.origin + window.location.pathname;
-            const enlaceReferido = `${enlaceBase}?ref=${miTelefono}`;
-            
-            const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
-            
+            const enlaceReferido = `${enlaceBase}?ref=${clienteActual.celular}`;
+            const mensaje = `¡Hola! Ya tengo mi ticket para el Giro del Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar tú también: ${enlaceReferido}`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
     </script>
