@@ -57,7 +57,7 @@
         .hero-section h1 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--amarillo); }
         .hero-section h2 { font-size: 1rem; font-weight: 400; color: #d1e7d3; }
 
-        /* --- CARRUSEL 3D (UNIFORME) --- */
+        /* --- CARRUSEL 3D --- */
         .carrusel-contenedor {
             width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;
             perspective: 1200px; margin-top: 10px; overflow: hidden;
@@ -69,24 +69,18 @@
         .cara-carrusel {
             position: absolute; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
             background-color: var(--blanco); border: 5px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            backface-visibility: hidden; /* Evita que se vea la parte de atrás */
         }
-        /* Las 3 caras se distribuyen en 120 grados */
         .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
         .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
         .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
 
         .cara-carrusel img {
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center; /* Centra la imagen perfectamente */
-            display: block;
+            width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
         }
 
         /* --- SECCIÓN DE BOTONES Y CONTACTO --- */
-        .acciones-section {
-            padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto;
-        }
+        .acciones-section { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
         .btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             padding: 15px; border-radius: 12px; font-weight: 800; font-size: 1rem;
@@ -118,7 +112,7 @@
 
         footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
 
-        /* --- ESTILOS DEL FORMULARIO Y MICRÓFONO (NUEVO) --- */
+        /* --- ESTILOS DEL FORMULARIO Y MICRÓFONO --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { background: var(--blanco); padding: 30px 20px; border-radius: 20px; width: 90%; max-width: 350px; text-align: center; }
@@ -132,6 +126,16 @@
         @keyframes pulse { 0% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-50%) scale(1.1); } 100% { transform: translateY(-50%) scale(1); } }
 
         .modal-content button.btn-generar { width: 100%; padding: 15px; background: var(--verde-oscuro); color: var(--blanco); border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1rem; margin-top: 10px; }
+
+        /* Tarjeta del Ticket Generado */
+        .ticket-generado {
+            display: none; background: var(--blanco); border-radius: 20px; padding: 25px 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 8px solid var(--verde-medio); 
+            margin: 20px auto; max-width: 350px; text-align: center;
+        }
+        .ticket-generado h2 { color: var(--verde-medio); font-size: 1.5rem; margin-bottom: 5px; }
+        .ticket-generado .numero-ticket { font-size: 3rem; font-weight: 900; color: var(--amarillo); margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
+        .ticket-generado p { font-size: 0.9rem; color: #555; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -179,27 +183,38 @@
         <a href="#panel" class="btn btn-panel">👤 Ver mi Panel de Control</a>
     </div>
 
+    <!-- TARJETA DEL TICKET GENERADO (NUEVA) -->
+    <div class="ticket-generado" id="tarjetaTicket">
+        <h2>¡Ticket Generado!</h2>
+        <p>Guarda este ticket, es tu pase a la suerte.</p>
+        
+        <div class="numero-ticket" id="ticketId">#1</div>
+        
+        <p><strong>Nombre:</strong> <span id="ticketNombre">Cliente</span></p>
+        <p><strong>Celular:</strong> <span id="ticketCelular">000</span></p>
+        <span style="font-weight: 800; color: var(--verde-oscuro); margin-top: 15px; display: block;" id="ticketFecha">Sorteo: Próximo Sábado</span>
+        
+        <button class="btn btn-wsp" style="margin-top: 20px;" onclick="compartirTicket()">📤 Compartir con Amigos</button>
+    </div>
+
     <!-- PANEL DEL AFILIADO -->
     <div class="panel-afiliado" id="panel">
         <h3>Mi Oficina Virtual</h3>
         <div class="panel-stats">
             <div class="stat-item">
-                <span class="stat-numero">3</span>
-                <span class="stat-label">Referidos</span>
+                <span class="stat-numero" id="statTickets">0</span>
+                <span class="stat-label">Mis Tickets</span>
             </div>
             <div class="stat-item">
-                <span class="stat-numero">4</span>
-                <span class="stat-label">Tickets</span>
+                <span class="stat-numero" id="statReferidos">0</span>
+                <span class="stat-label">Referidos</span>
             </div>
         </div>
-        
         <h4 style="margin-bottom: 10px; font-size: 1rem; color: #555;">Tus afiliados recientes:</h4>
-        <ul class="lista-referidos">
-            <li><span>María Rodríguez</span> <span>+1 Ticket</span></li>
-            <li><span>Carlos Pérez</span> <span>+1 Ticket</span></li>
-            <li><span>José Gómez</span> <span>+1 Ticket</span></li>
+        <ul class="lista-referidos" id="listaReferidosPanel">
+            <!-- Se llenará dinámicamente -->
+            <li><span>Aún no tienes referidos</span> <span>0</span></li>
         </ul>
-        <p style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 15px;">Los puntos acumulados se pueden cambiar por más tickets.</p>
     </div>
 
     <!-- EXPLICACIÓN SCI -->
@@ -208,35 +223,42 @@
         <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
     </div>
 
-    <!-- FORMULARIO FLOTANTE CON MICRÓFONO (NUEVO) -->
+    <!-- FORMULARIO FLOTANTE CON MICRÓFONO -->
     <div class="modal-overlay" id="modalRegistro">
         <div class="modal-content">
-            <h2>¡Genera tu Ticket!</h2>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Toca el micrófono y dicta tus datos.</p>
+            <h2 id="modalTitulo">¡Genera tu Ticket!</h2>
+            <p id="modalSubtitulo" style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Toca el micrófono y dicta tus datos.</p>
             
-            <div class="input-group">
+            <div class="input-group" id="grupoNombre">
                 <input type="text" id="inputNombre" placeholder="Tu Nombre y Apellido">
                 <button class="btn-mic" onclick="dictar('inputNombre', this)">🎤</button>
             </div>
 
-            <div class="input-group">
+            <div class="input-group" id="grupoCelular">
                 <input type="tel" id="inputCelular" placeholder="Tu número de WhatsApp">
                 <button class="btn-mic" onclick="dictar('inputCelular', this)">🎤</button>
             </div>
 
-            <button class="btn-generar" onclick="generarTicket()">Generar Ticket Ahora</button>
+            <button class="btn-generar" id="btnGenerar" onclick="generarTicket()">Generar Ticket Ahora</button>
         </div>
     </div>
 
     <footer>Plátanos El Pulpo &copy; 2026 - SCI</footer>
 
     <script>
-        // 1. Función del Menú
+        // 1. Variables globales
+        let clienteActual = {
+            nombre: localStorage.getItem('clienteNombre') || '',
+            celular: localStorage.getItem('clienteCelular') || '',
+            tickets: parseInt(localStorage.getItem('clienteTickets')) || 0
+        };
+
+        // 2. Función del Menú
         function toggleMenu() { 
             document.getElementById('navMenu').classList.toggle('active'); 
         }
 
-        // 2. Lógica del Carrusel
+        // 3. Lógica del Carrusel
         let anguloActual = 0;
         const carrusel = document.getElementById('miCarrusel');
         setInterval(() => {
@@ -244,45 +266,50 @@
             carrusel.style.transform = `rotateY(${anguloActual}deg)`;
         }, 7000); 
 
-        // 3. Función para Compartir
-        function compartirWhatsApp() {
-            const miTelefono = "04244259543"; 
-            const enlaceBase = window.location.origin + window.location.pathname;
-            const enlaceReferido = `${enlaceBase}?ref=${miTelefono}`;
-            const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
+        // 4. Abrir Modal (Inteligente: sabe si es cliente nuevo o viejo)
+        function abrirModal() {
+            if (clienteActual.nombre && clienteActual.celular) {
+                // Cliente viejo: Le ofrecemos su siguiente ticket
+                document.getElementById('modalTitulo').innerText = "¡Hola de nuevo, " + clienteActual.nombre.split(' ')[0] + "!";
+                document.getElementById('modalSubtitulo').innerText = "¿Quieres generar tu Ticket #" + (clienteActual.tickets + 1) + "?";
+                document.getElementById('grupoNombre').style.display = 'none';
+                document.getElementById('grupoCelular').style.display = 'none';
+                document.getElementById('btnGenerar').innerText = "Sí, generar mi Ticket #" + (clienteActual.tickets + 1);
+            } else {
+                // Cliente nuevo
+                document.getElementById('modalTitulo').innerText = "¡Genera tu Ticket!";
+                document.getElementById('modalSubtitulo').innerText = "Toca el micrófono y dicta tus datos.";
+                document.getElementById('grupoNombre').style.display = 'block';
+                document.getElementById('grupoCelular').style.display = 'block';
+                document.getElementById('btnGenerar').innerText = "Generar Ticket Ahora";
+            }
+            document.getElementById('modalRegistro').classList.add('active');
         }
 
-        // --- LÓGICA DEL FORMULARIO Y MICRÓFONO (NUEVO) ---
-        function abrirModal() { document.getElementById('modalRegistro').classList.add('active'); }
         function cerrarModal() { document.getElementById('modalRegistro').classList.remove('active'); }
 
+        // 5. Micrófono
         function dictar(inputId, boton) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
                 alert("Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.");
                 return;
             }
-
             const recognition = new SpeechRecognition();
             recognition.lang = 'es-ES';
             recognition.interimResults = false;
-
             boton.classList.add('escuchando');
             boton.innerText = '🛑';
-
             recognition.start();
 
             recognition.onresult = function(event) {
                 const textoDictado = event.results[0][0].transcript;
                 document.getElementById(inputId).value = textoDictado;
             };
-
             recognition.onend = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
             };
-
             recognition.onerror = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
@@ -290,21 +317,62 @@
             };
         }
 
+        // 6. Generar Ticket
         function generarTicket() {
-            const nombre = document.getElementById('inputNombre').value.trim();
-            const celular = document.getElementById('inputCelular').value.trim();
-
-            if (nombre === '' || celular === '') {
-                alert('Por favor, llena ambos campos.');
-                return;
+            if (clienteActual.nombre && clienteActual.celular) {
+                // Si ya existe, solo sumamos un ticket
+                clienteActual.tickets += 1;
+            } else {
+                // Si es nuevo, validamos los campos
+                const nombre = document.getElementById('inputNombre').value.trim();
+                const celular = document.getElementById('inputCelular').value.trim();
+                if (nombre === '' || celular === '') {
+                    alert('Por favor, llena ambos campos.');
+                    return;
+                }
+                clienteActual.nombre = nombre;
+                clienteActual.celular = celular;
+                clienteActual.tickets = 1;
             }
 
-            // Guardamos los datos en la memoria temporal
-            localStorage.setItem('clienteNombre', nombre);
-            localStorage.setItem('clienteCelular', celular);
+            // Guardar en memoria
+            localStorage.setItem('clienteNombre', clienteActual.nombre);
+            localStorage.setItem('clienteCelular', clienteActual.celular);
+            localStorage.setItem('clienteTickets', clienteActual.tickets);
 
-            alert("¡Ticket generado con éxito para " + nombre + "! (El sistema de la ruleta se conectará en el próximo paso).");
+            // Calcular próximo sábado
+            const hoy = new Date();
+            const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
+            const proximoSabado = new Date(hoy);
+            proximoSabado.setDate(hoy.getDate() + diasParaSabado);
+            const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+
+            // Llenar la tarjeta
+            document.getElementById('ticketId').innerText = '#' + clienteActual.tickets;
+            document.getElementById('ticketNombre').innerText = clienteActual.nombre;
+            document.getElementById('ticketCelular').innerText = clienteActual.celular;
+            document.getElementById('ticketFecha').innerText = 'Próximo Sorteo: Sábado ' + fechaStr;
+            
+            // Actualizar Panel
+            document.getElementById('statTickets').innerText = clienteActual.tickets;
+
+            // Mostrar tarjeta y cerrar modal
             cerrarModal();
+            document.getElementById('tarjetaTicket').style.display = 'block';
+            document.getElementById('tarjetaTicket').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 7. Compartir
+        function compartirWhatsApp() {
+            let miTelefono = clienteActual.celular || "04244259543"; 
+            const enlaceBase = window.location.origin + window.location.pathname;
+            const enlaceReferido = `${enlaceBase}?ref=${miTelefono}`;
+            const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+
+        function compartirTicket() {
+            compartirWhatsApp();
         }
     </script>
 </body>
