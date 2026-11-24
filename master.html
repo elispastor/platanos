@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plátanos El Pulpo - Compra Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --verde-oscuro: #0f2e14;
@@ -15,13 +16,23 @@
             --texto: #333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--gris-fondo); color: var(--texto); overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-        /* --- HEADER Y MENÚ --- */
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER COMPACTO --- */
         header {
             background-color: var(--verde-oscuro);
-            padding: 15px 20px;
+            padding: 8px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -29,118 +40,373 @@
             top: 0;
             z-index: 1000;
         }
-        .logo-text { color: var(--blanco); font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .bandera-ve { display: flex; flex-direction: column; width: 24px; height: 16px; border-radius: 2px; overflow: hidden; }
-        .bandera-ve div { flex: 1; }
-        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 7px; color: #0033a0; }
-        .bandera-ve .azul { background: #0033a0; }
-        .bandera-ve .rojo { background: #d90000; }
 
-        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
-        .hamburger span { width: 28px; height: 3px; background-color: var(--amarillo); border-radius: 3px; transition: 0.3s; }
-        
-        .nav-menu { 
-            display: none; position: absolute; top: 60px; left: 0; width: 100%; 
-            background-color: var(--verde-medio); flex-direction: column; padding: 20px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+        .logo-text {
+            color: var(--blanco);
+            font-weight: 900;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .nav-menu.active { display: flex; }
-        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- TÍTULO GIGANTE --- */
+        .bandera-ve {
+            display: flex;
+            flex-direction: column;
+            width: 22px;
+            height: 15px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .bandera-ve div {
+            flex: 1;
+        }
+
+        .bandera-ve .amarillo {
+            background: #ffce00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6px;
+            color: #0033a0;
+        }
+
+        .bandera-ve .azul {
+            background: #0033a0;
+        }
+
+        .bandera-ve .rojo {
+            background: #d90000;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background-color: var(--amarillo);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            width: 100%;
+            background-color: var(--verde-medio);
+            flex-direction: column;
+            padding: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu a {
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px 0;
+            font-weight: 600;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- TÍTULO COMPACTO --- */
         .hero-section {
             background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
-            padding: 30px 20px 20px 20px;
+            padding: 12px 16px 10px 16px;
             text-align: center;
             color: var(--blanco);
         }
-        .hero-section h1 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--amarillo); }
-        .hero-section h2 { font-size: 1rem; font-weight: 400; color: #d1e7d3; }
+
+        .hero-section h1 {
+            font-size: 1.15rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 4px;
+            color: var(--amarillo);
+        }
+
+        .hero-section h2 {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: #d1e7d3;
+            line-height: 1.3;
+        }
 
         /* --- CARRUSEL 3D --- */
         .carrusel-contenedor {
-            width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;
-            perspective: 1200px; margin-top: 10px; overflow: hidden;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+            margin-top: 6px;
+            margin-bottom: 28px;
+            overflow: hidden;
         }
+
         .carrusel-puerta {
-            width: 240px; height: 340px; position: relative; transform-style: preserve-3d;
+            width: 200px;
+            height: 280px;
+            position: relative;
+            transform-style: preserve-3d;
             transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .cara-carrusel {
-            position: absolute; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
-            background-color: var(--blanco); border: 5px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: var(--blanco);
+            border: 5px solid var(--blanco);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             backface-visibility: hidden;
         }
-        .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
-        .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
-        .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
 
-        .cara-carrusel img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+        .cara-carrusel:nth-child(1) {
+            transform: rotateY(0deg) translateZ(170px);
+        }
 
-        /* --- SECCIÓN DE BOTONES Y FORMULARIO PRINCIPAL --- */
-        .acciones-section { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
-        
+        .cara-carrusel:nth-child(2) {
+            transform: rotateY(120deg) translateZ(170px);
+        }
+
+        .cara-carrusel:nth-child(3) {
+            transform: rotateY(240deg) translateZ(170px);
+        }
+
+        .cara-carrusel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* --- FORMULARIO PRINCIPAL --- */
+        .acciones-section {
+            padding: 0 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
         .formulario-principal {
-            background: var(--blanco); padding: 25px 20px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid var(--verde-medio);
-            text-align: center; margin-bottom: 20px;
+            background: var(--blanco);
+            padding: 22px 18px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--verde-medio);
+            text-align: center;
         }
-        .formulario-principal h2 { color: var(--verde-oscuro); font-size: 1.4rem; margin-bottom: 10px; }
-        .formulario-principal p { font-size: 0.9rem; color: #555; margin-bottom: 20px; }
 
-        .input-group { position: relative; margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--verde-oscuro); margin-bottom: 5px; }
-        .input-group input { 
-            width: 100%; padding: 15px 45px 15px 15px; border: 2px solid #ccc; 
-            border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 1rem; transition: 0.3s;
+        .formulario-principal h2 {
+            color: var(--verde-oscuro);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
         }
-        .input-group input:focus { border-color: var(--verde-medio); outline: none; }
-        
-        .btn-mic { 
-            position: absolute; right: 10px; bottom: 8px; 
-            background: var(--verde-medio); color: white; border: none; width: 35px; height: 35px; 
-            border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+
+        .formulario-principal p {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 18px;
         }
-        .btn-mic.escuchando { background: #e74c3c; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--verde-oscuro);
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 45px 14px 14px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--verde-medio);
+            outline: none;
+        }
+
+        .btn-mic {
+            position: absolute;
+            right: 10px;
+            bottom: 8px;
+            background: var(--verde-medio);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .btn-mic.escuchando {
+            background: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
 
         .btn-principal {
-            width: 100%; padding: 18px; background: var(--verde-medio); color: var(--blanco);
-            border: none; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(31, 92, 44, 0.3); transition: 0.2s; margin-top: 10px;
+            width: 100%;
+            padding: 16px;
+            background: var(--verde-medio);
+            color: var(--blanco);
+            border: none;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(31, 92, 44, 0.3);
+            transition: 0.2s;
+            margin-top: 10px;
         }
-        .btn-principal:hover { background: var(--verde-oscuro); }
 
-        .btn-wsp { background-color: #25D366; color: white; text-decoration: none; display: block; padding: 15px; border-radius: 12px; font-weight: 800; text-align: center; }
+        .btn-principal:hover {
+            background: var(--verde-oscuro);
+        }
+
+        .btn-wsp {
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-align: center;
+        }
 
         /* --- PANEL DEL AFILIADO --- */
         .panel-afiliado {
-            background: var(--blanco); margin: 20px; padding: 20px; border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--verde-medio);
+            background: var(--blanco);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--verde-medio);
         }
-        .panel-afiliado h3 { color: var(--verde-oscuro); margin-bottom: 15px; text-align: center; }
-        .panel-stats { display: flex; justify-content: space-around; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
-        .stat-item { text-align: center; }
-        .stat-numero { font-size: 1.8rem; font-weight: 900; color: var(--verde-medio); display: block; }
-        .stat-label { font-size: 0.8rem; color: #666; }
+
+        .panel-afiliado h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .panel-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-numero {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--verde-medio);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
 
         /* --- EXPLICACIÓN SCI --- */
-        .info-sci { background: #e8f5e9; margin: 20px; padding: 20px; border-radius: 15px; border-left: 5px solid var(--verde-medio); }
-        .info-sci h3 { color: var(--verde-oscuro); margin-bottom: 10px; font-size: 1.2rem; }
-        .info-sci p { font-size: 0.9rem; line-height: 1.5; color: #444; }
+        .info-sci {
+            background: #e8f5e9;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--verde-medio);
+        }
 
-        footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
+        .info-sci h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-sci p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
+        }
 
         /* --- MENSAJE DE ÉXITO --- */
         .mensaje-exito {
-            display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 10px;
-            text-align: center; font-weight: 600; margin-top: 20px; border: 1px solid #c3e6cb;
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 18px;
+            border: 1px solid #c3e6cb;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo-text">
             <div class="bandera-ve">
@@ -150,9 +416,13 @@
             </div>
             Plátanos EL PULPO
         </div>
+
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+
         <nav class="nav-menu" id="navMenu">
             <a href="#">🏠 Inicio</a>
             <a href="#" onclick="scrollToFormulario(); toggleMenu()">🛒 Hacer mi Pedido</a>
@@ -160,124 +430,149 @@
         </nav>
     </header>
 
-    <!-- TÍTULO -->
     <div class="hero-section">
         <h1>Compra más económico<br>y recibe a domicilio.</h1>
         <h2>Cada compra suma tickets para el sorteo semanal.</h2>
     </div>
 
-    <!-- CARRUSEL -->
     <div class="carrusel-contenedor">
         <div class="carrusel-puerta" id="miCarrusel">
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3"></div>
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1">
+            </div>
+
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2">
+            </div>
+
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3">
+            </div>
         </div>
     </div>
 
-    <!-- FORMULARIO PRINCIPAL (REGISTRO PARA PEDIDOS) -->
     <div class="acciones-section" id="formularioPedido">
         <div class="formulario-principal">
             <h2>¡Regístrate para tu primer pedido!</h2>
+
             <p>Déjanos tus datos y coordinamos la entrega de tus plátanos frescos.</p>
-            
+
             <div class="input-group">
                 <label>Tu Nombre y Apellido</label>
+
                 <input type="text" id="regNombre" placeholder="Ej: Pedro Pérez">
+
                 <button class="btn-mic" onclick="dictar('regNombre', this)">🎤</button>
             </div>
 
             <div class="input-group">
                 <label>Tu Número de WhatsApp</label>
+
                 <input type="tel" id="regCelular" placeholder="Ej: 04241234567">
+
                 <button class="btn-mic" onclick="dictar('regCelular', this)">🎤</button>
             </div>
 
-            <button class="btn-principal" onclick="enviarPedido()">Quiero Registrar Mi Pedido</button>
-            
+            <button class="btn-principal" onclick="enviarPedido()">
+                Quiero Registrar Mi Pedido
+            </button>
+
             <div class="mensaje-exito" id="mensajeExito">
                 ¡Registro exitoso, <span id="nombreExito"></span>! Pronto te contactaremos por WhatsApp para coordinar tu entrega.
             </div>
         </div>
 
-        <a href="https://wa.me/584244259543" class="btn-wsp" target="_blank">📱 Contactar al Pulpo por WhatsApp</a>
+        <a href="https://wa.me/584244259543" class="btn-wsp" target="_blank">
+            📱 Contactar al Pulpo por WhatsApp
+        </a>
     </div>
 
-    <!-- PANEL DEL AFILIADO -->
     <div class="panel-afiliado" id="panel">
         <h3>Mi Oficina Virtual</h3>
+
         <div class="panel-stats">
             <div class="stat-item">
                 <span class="stat-numero" id="statTickets">0</span>
                 <span class="stat-label">Mis Tickets</span>
             </div>
+
             <div class="stat-item">
                 <span class="stat-numero" id="statReferidos">0</span>
                 <span class="stat-label">Referidos</span>
             </div>
         </div>
+
         <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 15px;">
             Al registrarte, acumulas automáticamente tu primer ticket para el sorteo del sábado.
         </p>
     </div>
 
-    <!-- EXPLICACIÓN SCI -->
     <div class="info-sci">
         <h3>¿Qué es el SCI?</h3>
-        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
+
+        <p>
+            El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta,
+            sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.
+        </p>
     </div>
 
-    <footer>Plátanos El Pulpo &copy; 2026 - SCI</footer>
+    <footer>
+        Plátanos El Pulpo &copy; 2026 - SCI
+    </footer>
 
     <script>
-        // 1. Función del Menú
-        function toggleMenu() { 
-            document.getElementById('navMenu').classList.toggle('active'); 
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
         }
 
-        // 2. Lógica del Carrusel
         let anguloActual = 0;
         const carrusel = document.getElementById('miCarrusel');
-        setInterval(() => {
-            anguloActual -= 120; 
-            carrusel.style.transform = `rotateY(${anguloActual}deg)`;
-        }, 7000); 
 
-        // 3. Función para hacer scroll al formulario (desde el menú)
+        setInterval(() => {
+            anguloActual -= 120;
+            carrusel.style.transform = `rotateY(${anguloActual}deg)`;
+        }, 7000);
+
         function scrollToFormulario() {
-            document.getElementById('formularioPedido').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('formularioPedido').scrollIntoView({
+                behavior: 'smooth'
+            });
         }
 
-        // 4. Micrófono para dictar
         function dictar(inputId, boton) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
             if (!SpeechRecognition) {
-                alert("Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.");
+                alert('Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.');
                 return;
             }
+
             const recognition = new SpeechRecognition();
             recognition.lang = 'es-ES';
             recognition.interimResults = false;
+
             boton.classList.add('escuchando');
             boton.innerText = '🛑';
+
             recognition.start();
 
             recognition.onresult = function(event) {
                 const textoDictado = event.results[0][0].transcript;
                 document.getElementById(inputId).value = textoDictado;
             };
+
             recognition.onend = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
             };
+
             recognition.onerror = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
-                alert("No se pudo captar el audio. Intenta de nuevo.");
+                alert('No se pudo captar el audio. Intenta de nuevo.');
             };
         }
 
-        // 5. Enviar el Pedido (La magia hacia Mongo)
         async function enviarPedido() {
             const nombre = document.getElementById('regNombre').value.trim();
             const celular = document.getElementById('regCelular').value.trim();
@@ -287,26 +582,16 @@
                 return;
             }
 
-            // --- AQUÍ CONECTAREMOS CON MONGODB EN EL SIGUIENTE PASO ---
-            // Por ahora, mostraremos el mensaje de éxito en pantalla.
-
-            // Guardar en la memoria del navegador
             localStorage.setItem('clienteNombre', nombre);
             localStorage.setItem('clienteCelular', celular);
             localStorage.setItem('clienteTickets', 1);
 
-            // Mostrar mensaje de éxito
             document.getElementById('nombreExito').innerText = nombre;
             document.getElementById('mensajeExito').style.display = 'block';
-            
-            // Actualizar el panel de control
             document.getElementById('statTickets').innerText = '1';
 
-            // Limpiar los campos
             document.getElementById('regNombre').value = '';
             document.getElementById('regCelular').value = '';
-
-            // (El envío a MongoDB se activará en el siguiente paso)
         }
     </script>
 </body>
