@@ -15,13 +15,23 @@
             --texto: #333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--gris-fondo); color: var(--texto); overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-        /* --- HEADER Y MENÚ --- */
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER COMPACTO --- */
         header {
             background-color: var(--verde-oscuro);
-            padding: 15px 20px;
+            padding: 8px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -29,118 +39,426 @@
             top: 0;
             z-index: 1000;
         }
-        .logo-text { color: var(--blanco); font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .bandera-ve { display: flex; flex-direction: column; width: 24px; height: 16px; border-radius: 2px; overflow: hidden; }
-        .bandera-ve div { flex: 1; }
-        .bandera-ve .amarillo { background: #ffce00; display: flex; justify-content: center; align-items: center; font-size: 7px; color: #0033a0; }
-        .bandera-ve .azul { background: #0033a0; }
-        .bandera-ve .rojo { background: #d90000; }
 
-        .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; padding: 5px; }
-        .hamburger span { width: 28px; height: 3px; background-color: var(--amarillo); border-radius: 3px; transition: 0.3s; }
-        
-        .nav-menu { 
-            display: none; position: absolute; top: 60px; left: 0; width: 100%; 
-            background-color: var(--verde-medio); flex-direction: column; padding: 20px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+        .logo-text {
+            color: var(--blanco);
+            font-weight: 900;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .nav-menu.active { display: flex; }
-        .nav-menu a { color: var(--blanco); text-decoration: none; padding: 12px 0; font-weight: 600; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        /* --- TÍTULO GIGANTE --- */
+        .bandera-ve {
+            display: flex;
+            flex-direction: column;
+            width: 22px;
+            height: 15px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .bandera-ve div {
+            flex: 1;
+        }
+
+        .bandera-ve .amarillo {
+            background: #ffce00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6px;
+            color: #0033a0;
+        }
+
+        .bandera-ve .azul {
+            background: #0033a0;
+        }
+
+        .bandera-ve .rojo {
+            background: #d90000;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background-color: var(--amarillo);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            width: 100%;
+            background-color: var(--verde-medio);
+            flex-direction: column;
+            padding: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu a {
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px 0;
+            font-weight: 600;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- TÍTULO COMPACTO --- */
         .hero-section {
             background: linear-gradient(180deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
-            padding: 30px 20px 20px 20px;
+            padding: 12px 16px 10px 16px;
             text-align: center;
             color: var(--blanco);
         }
-        .hero-section h1 { font-size: 1.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; color: var(--amarillo); }
-        .hero-section h2 { font-size: 1rem; font-weight: 400; color: #d1e7d3; }
+
+        .hero-section h1 {
+            font-size: 1.15rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 4px;
+            color: var(--amarillo);
+        }
+
+        .hero-section h2 {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: #d1e7d3;
+            line-height: 1.3;
+        }
 
         /* --- CARRUSEL 3D --- */
         .carrusel-contenedor {
-            width: 100%; height: 380px; display: flex; justify-content: center; align-items: center;
-            perspective: 1200px; margin-top: 10px; overflow: hidden;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+            margin-top: 6px;
+            margin-bottom: 28px;
+            overflow: hidden;
         }
+
         .carrusel-puerta {
-            width: 240px; height: 340px; position: relative; transform-style: preserve-3d;
+            width: 200px;
+            height: 280px;
+            position: relative;
+            transform-style: preserve-3d;
             transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .cara-carrusel {
-            position: absolute; width: 100%; height: 100%; border-radius: 15px; overflow: hidden;
-            background-color: var(--blanco); border: 5px solid var(--blanco); box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            backface-visibility: hidden; /* Evita que se vea la parte de atrás */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: var(--blanco);
+            border: 5px solid var(--blanco);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            backface-visibility: hidden;
         }
-        .cara-carrusel:nth-child(1) { transform: rotateY(0deg) translateZ(230px); }
-        .cara-carrusel:nth-child(2) { transform: rotateY(120deg) translateZ(230px); }
-        .cara-carrusel:nth-child(3) { transform: rotateY(240deg) translateZ(230px); }
+
+        .cara-carrusel:nth-child(1) {
+            transform: rotateY(0deg) translateZ(170px);
+        }
+
+        .cara-carrusel:nth-child(2) {
+            transform: rotateY(120deg) translateZ(170px);
+        }
+
+        .cara-carrusel:nth-child(3) {
+            transform: rotateY(240deg) translateZ(170px);
+        }
 
         .cara-carrusel img {
-            width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
         }
 
-        /* --- SECCIÓN DE BOTONES Y CONTACTO --- */
-        .acciones-section { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
+        /* --- BOTONES --- */
+        .acciones-section {
+            padding: 0 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
         .btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 15px; border-radius: 12px; font-weight: 800; font-size: 1rem;
-            text-decoration: none; text-align: center; transition: 0.2s; border: none; cursor: pointer; width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        .btn-wsp { background-color: #25D366; color: white; }
-        .btn-compartir { background-color: var(--verde-oscuro); color: var(--amarillo); }
-        .btn-panel { background-color: var(--amarillo); color: var(--verde-oscuro); }
 
-        /* --- PANEL DE CONTROL DEL AFILIADO --- */
-        .panel-afiliado {
-            background: var(--blanco); margin: 20px; padding: 20px; border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--verde-medio);
+        .btn-wsp {
+            background-color: #25D366;
+            color: white;
         }
-        .panel-afiliado h3 { color: var(--verde-oscuro); margin-bottom: 15px; text-align: center; }
-        .panel-stats { display: flex; justify-content: space-around; margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 10px; }
-        .stat-item { text-align: center; }
-        .stat-numero { font-size: 1.8rem; font-weight: 900; color: var(--verde-medio); display: block; }
-        .stat-label { font-size: 0.8rem; color: #666; }
-        
-        .lista-referidos { list-style: none; padding: 0; }
-        .lista-referidos li { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; }
-        .lista-referidos li span:last-child { color: var(--verde-medio); font-weight: bold; }
+
+        .btn-compartir {
+            background-color: var(--verde-oscuro);
+            color: var(--amarillo);
+        }
+
+        .btn-panel {
+            background-color: var(--amarillo);
+            color: var(--verde-oscuro);
+        }        /* --- PANEL DEL AFILIADO --- */
+        .panel-afiliado {
+            background: var(--blanco);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--verde-medio);
+        }
+
+        .panel-afiliado h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .panel-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-numero {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--verde-medio);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .lista-referidos {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lista-referidos li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .lista-referidos li span:last-child {
+            color: var(--verde-medio);
+            font-weight: bold;
+        }
 
         /* --- EXPLICACIÓN SCI --- */
-        .info-sci { background: #e8f5e9; margin: 20px; padding: 20px; border-radius: 15px; border-left: 5px solid var(--verde-medio); }
-        .info-sci h3 { color: var(--verde-oscuro); margin-bottom: 10px; font-size: 1.2rem; }
-        .info-sci p { font-size: 0.9rem; line-height: 1.5; color: #444; }
-
-        footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
-
-        /* --- ESTILOS DEL FORMULARIO Y MICRÓFONO --- */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.3s; }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-content { background: var(--blanco); padding: 30px 20px; border-radius: 20px; width: 90%; max-width: 350px; text-align: center; }
-        .modal-content h2 { color: var(--verde-oscuro); margin-bottom: 15px; font-size: 1.3rem; }
-        
-        .input-group { position: relative; margin-bottom: 15px; }
-        .input-group input { width: 100%; padding: 15px 45px 15px 15px; border: 1px solid #ccc; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; }
-        
-        .btn-mic { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: var(--verde-medio); color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; transition: 0.2s;}
-        .btn-mic.escuchando { background: #e74c3c; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-50%) scale(1.1); } 100% { transform: translateY(-50%) scale(1); } }
-
-        .modal-content button.btn-generar { width: 100%; padding: 15px; background: var(--verde-oscuro); color: var(--blanco); border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1rem; margin-top: 10px; }
-
-        /* Tarjeta del Ticket Generado */
-        .ticket-generado {
-            display: none; background: var(--blanco); border-radius: 20px; padding: 25px 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: 8px solid var(--verde-medio); 
-            margin: 20px auto; max-width: 350px; text-align: center;
+        .info-sci {
+            background: #e8f5e9;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--verde-medio);
         }
-        .ticket-generado h2 { color: var(--verde-medio); font-size: 1.5rem; margin-bottom: 5px; }
-        .ticket-generado .numero-ticket { font-size: 3rem; font-weight: 900; color: var(--amarillo); margin: 15px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);}
-        .ticket-generado p { font-size: 0.9rem; color: #555; margin-bottom: 10px; }
+
+        .info-sci h3 {
+            color: var(--verde-oscuro);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-sci p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        /* --- FORMULARIO Y MICRÓFONO --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--blanco);
+            padding: 30px 20px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: var(--verde-oscuro);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-mic {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--verde-medio);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .btn-mic.escuchando {
+            background: #e74c3c;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.1);
+            }
+            100% {
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        .modal-content button.btn-generar {
+            width: 100%;
+            padding: 15px;
+            background: var(--verde-oscuro);
+            color: var(--blanco);
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* --- TICKET GENERADO --- */
+        .ticket-generado {
+            display: none;
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-top: 8px solid var(--verde-medio);
+            margin: 20px auto;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .ticket-generado h2 {
+            color: var(--verde-medio);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .ticket-generado .numero-ticket {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--amarillo);
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .ticket-generado p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo-text">
             <div class="bandera-ve">
@@ -150,9 +468,13 @@
             </div>
             Plátanos EL PULPO
         </div>
+
         <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+
         <nav class="nav-menu" id="navMenu">
             <a href="#">🏠 Inicio</a>
             <a href="#">🛒 Comprar Plátanos</a>
@@ -161,74 +483,92 @@
         </nav>
     </header>
 
-    <!-- TÍTULO -->
     <div class="hero-section">
         <h1>Mientras más tickets,<br>más oportunidades tienes.</h1>
         <h2>Cada sábado sorteamos una bolsa de plátanos.</h2>
     </div>
 
-    <!-- CARRUSEL -->
     <div class="carrusel-contenedor">
         <div class="carrusel-puerta" id="miCarrusel">
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2"></div>
-            <div class="cara-carrusel"><img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3"></div>
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/1.jpg" alt="Imagen 1">
+            </div>
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/2.jpg" alt="Imagen 2">
+            </div>
+            <div class="cara-carrusel">
+                <img src="https://raw.githubusercontent.com/elispastor/platanos/main/3.jpg" alt="Imagen 3">
+            </div>
         </div>
     </div>
 
-    <!-- BOTONES PRINCIPALES -->
     <div class="acciones-section">
         <a href="https://wa.me/584227159158" class="btn btn-wsp" target="_blank">📱 Contactar al Pulpo</a>
+
         <button class="btn btn-compartir" onclick="compartirWhatsApp()">📤 Compartir y Ganar Tickets</button>
+
         <a href="#panel" class="btn btn-panel">👤 Ver mi Panel de Control</a>
     </div>
 
-    <!-- TARJETA DEL TICKET GENERADO (NUEVA) -->
     <div class="ticket-generado" id="tarjetaTicket">
         <h2>¡Ticket Generado!</h2>
         <p>Guarda este ticket, es tu pase a la suerte.</p>
-        
+
         <div class="numero-ticket" id="ticketId">#1</div>
-        
+
         <p><strong>Nombre:</strong> <span id="ticketNombre">Cliente</span></p>
         <p><strong>Celular:</strong> <span id="ticketCelular">000</span></p>
-        <span style="font-weight: 800; color: var(--verde-oscuro); margin-top: 15px; display: block;" id="ticketFecha">Sorteo: Próximo Sábado</span>
-        
-        <button class="btn btn-wsp" style="margin-top: 20px;" onclick="compartirTicket()">📤 Compartir con Amigos</button>
+
+        <span style="font-weight: 800; color: var(--verde-oscuro); margin-top: 15px; display: block;" id="ticketFecha">
+            Sorteo: Próximo Sábado
+        </span>
+
+        <button class="btn btn-wsp" style="margin-top: 20px;" onclick="compartirTicket()">
+            📤 Compartir con Amigos
+        </button>
     </div>
 
-    <!-- PANEL DEL AFILIADO -->
     <div class="panel-afiliado" id="panel">
         <h3>Mi Oficina Virtual</h3>
+
         <div class="panel-stats">
             <div class="stat-item">
                 <span class="stat-numero" id="statTickets">0</span>
                 <span class="stat-label">Mis Tickets</span>
             </div>
+
             <div class="stat-item">
                 <span class="stat-numero" id="statReferidos">0</span>
                 <span class="stat-label">Referidos</span>
             </div>
         </div>
+
         <h4 style="margin-bottom: 10px; font-size: 1rem; color: #555;">Tus afiliados recientes:</h4>
+
         <ul class="lista-referidos" id="listaReferidosPanel">
-            <!-- Se llenará dinámicamente -->
-            <li><span>Aún no tienes referidos</span> <span>0</span></li>
+            <li>
+                <span>Aún no tienes referidos</span>
+                <span>0</span>
+            </li>
         </ul>
     </div>
 
-    <!-- EXPLICACIÓN SCI -->
     <div class="info-sci">
         <h3>¿Qué es el SCI?</h3>
-        <p>El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta, sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.</p>
+        <p>
+            El <strong>Sistema de Compra Inteligente</strong> es un ecosistema donde comprar plátanos no solo te alimenta,
+            sino que también te premia. Cada compra suma tickets, y cada persona que recomiendes suma más.
+        </p>
     </div>
 
-    <!-- FORMULARIO FLOTANTE CON MICRÓFONO -->
     <div class="modal-overlay" id="modalRegistro">
         <div class="modal-content">
             <h2 id="modalTitulo">¡Genera tu Ticket!</h2>
-            <p id="modalSubtitulo" style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Toca el micrófono y dicta tus datos.</p>
-            
+
+            <p id="modalSubtitulo" style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+                Toca el micrófono y dicta tus datos.
+            </p>
+
             <div class="input-group" id="grupoNombre">
                 <input type="text" id="inputNombre" placeholder="Tu Nombre y Apellido">
                 <button class="btn-mic" onclick="dictar('inputNombre', this)">🎤</button>
@@ -239,136 +579,157 @@
                 <button class="btn-mic" onclick="dictar('inputCelular', this)">🎤</button>
             </div>
 
-            <button class="btn-generar" id="btnGenerar" onclick="generarTicket()">Generar Ticket Ahora</button>
+            <button class="btn-generar" id="btnGenerar" onclick="generarTicket()">
+                Generar Ticket Ahora
+            </button>
         </div>
     </div>
 
-    <footer>Plátanos El Pulpo &copy; 2026 - SCI</footer>
+    <footer>
+        Plátanos El Pulpo &copy; 2026 - SCI
+    </footer>
 
     <script>
-        // 1. Variables globales
         let clienteActual = {
             nombre: localStorage.getItem('clienteNombre') || '',
             celular: localStorage.getItem('clienteCelular') || '',
             tickets: parseInt(localStorage.getItem('clienteTickets')) || 0
         };
 
-        // 2. Función del Menú
-        function toggleMenu() { 
-            document.getElementById('navMenu').classList.toggle('active'); 
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
         }
 
-        // 3. Lógica del Carrusel
         let anguloActual = 0;
         const carrusel = document.getElementById('miCarrusel');
-        setInterval(() => {
-            anguloActual -= 120; 
-            carrusel.style.transform = `rotateY(${anguloActual}deg)`;
-        }, 7000); 
 
-        // 4. Abrir Modal (Inteligente: sabe si es cliente nuevo o viejo)
+        setInterval(() => {
+            anguloActual -= 120;
+            carrusel.style.transform = `rotateY(${anguloActual}deg)`;
+        }, 7000);
+
         function abrirModal() {
             if (clienteActual.nombre && clienteActual.celular) {
-                // Cliente viejo: Le ofrecemos su siguiente ticket
-                document.getElementById('modalTitulo').innerText = "¡Hola de nuevo, " + clienteActual.nombre.split(' ')[0] + "!";
-                document.getElementById('modalSubtitulo').innerText = "¿Quieres generar tu Ticket #" + (clienteActual.tickets + 1) + "?";
+                document.getElementById('modalTitulo').innerText =
+                    '¡Hola de nuevo, ' + clienteActual.nombre.split(' ')[0] + '!';
+
+                document.getElementById('modalSubtitulo').innerText =
+                    '¿Quieres generar tu Ticket #' + (clienteActual.tickets + 1) + '?';
+
                 document.getElementById('grupoNombre').style.display = 'none';
                 document.getElementById('grupoCelular').style.display = 'none';
-                document.getElementById('btnGenerar').innerText = "Sí, generar mi Ticket #" + (clienteActual.tickets + 1);
+
+                document.getElementById('btnGenerar').innerText =
+                    'Sí, generar mi Ticket #' + (clienteActual.tickets + 1);
             } else {
-                // Cliente nuevo
-                document.getElementById('modalTitulo').innerText = "¡Genera tu Ticket!";
-                document.getElementById('modalSubtitulo').innerText = "Toca el micrófono y dicta tus datos.";
+                document.getElementById('modalTitulo').innerText = '¡Genera tu Ticket!';
+                document.getElementById('modalSubtitulo').innerText = 'Toca el micrófono y dicta tus datos.';
+
                 document.getElementById('grupoNombre').style.display = 'block';
                 document.getElementById('grupoCelular').style.display = 'block';
-                document.getElementById('btnGenerar').innerText = "Generar Ticket Ahora";
+
+                document.getElementById('btnGenerar').innerText = 'Generar Ticket Ahora';
             }
+
             document.getElementById('modalRegistro').classList.add('active');
         }
 
-        function cerrarModal() { document.getElementById('modalRegistro').classList.remove('active'); }
+        function cerrarModal() {
+            document.getElementById('modalRegistro').classList.remove('active');
+        }
 
-        // 5. Micrófono
         function dictar(inputId, boton) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
             if (!SpeechRecognition) {
-                alert("Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.");
+                alert('Tu navegador no soporta el dictado por voz. Por favor, escribe tus datos.');
                 return;
             }
+
             const recognition = new SpeechRecognition();
             recognition.lang = 'es-ES';
             recognition.interimResults = false;
+
             boton.classList.add('escuchando');
             boton.innerText = '🛑';
+
             recognition.start();
 
             recognition.onresult = function(event) {
                 const textoDictado = event.results[0][0].transcript;
                 document.getElementById(inputId).value = textoDictado;
             };
+
             recognition.onend = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
             };
+
             recognition.onerror = function() {
                 boton.classList.remove('escuchando');
                 boton.innerText = '🎤';
-                alert("No se pudo captar el audio. Intenta de nuevo.");
+                alert('No se pudo captar el audio. Intenta de nuevo.');
             };
         }
 
-        // 6. Generar Ticket
         function generarTicket() {
             if (clienteActual.nombre && clienteActual.celular) {
-                // Si ya existe, solo sumamos un ticket
                 clienteActual.tickets += 1;
             } else {
-                // Si es nuevo, validamos los campos
                 const nombre = document.getElementById('inputNombre').value.trim();
                 const celular = document.getElementById('inputCelular').value.trim();
+
                 if (nombre === '' || celular === '') {
                     alert('Por favor, llena ambos campos.');
                     return;
                 }
+
                 clienteActual.nombre = nombre;
                 clienteActual.celular = celular;
                 clienteActual.tickets = 1;
             }
 
-            // Guardar en memoria
             localStorage.setItem('clienteNombre', clienteActual.nombre);
             localStorage.setItem('clienteCelular', clienteActual.celular);
             localStorage.setItem('clienteTickets', clienteActual.tickets);
 
-            // Calcular próximo sábado
             const hoy = new Date();
             const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
+
             const proximoSabado = new Date(hoy);
             proximoSabado.setDate(hoy.getDate() + diasParaSabado);
-            const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
 
-            // Llenar la tarjeta
+            const fechaStr = proximoSabado.toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long'
+            });
+
             document.getElementById('ticketId').innerText = '#' + clienteActual.tickets;
             document.getElementById('ticketNombre').innerText = clienteActual.nombre;
             document.getElementById('ticketCelular').innerText = clienteActual.celular;
             document.getElementById('ticketFecha').innerText = 'Próximo Sorteo: Sábado ' + fechaStr;
-            
-            // Actualizar Panel
             document.getElementById('statTickets').innerText = clienteActual.tickets;
 
-            // Mostrar tarjeta y cerrar modal
             cerrarModal();
+
             document.getElementById('tarjetaTicket').style.display = 'block';
-            document.getElementById('tarjetaTicket').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('tarjetaTicket').scrollIntoView({
+                behavior: 'smooth'
+            });
         }
 
-        // 7. Compartir
         function compartirWhatsApp() {
-            let miTelefono = clienteActual.celular || "04244259543"; 
+            let miTelefono = clienteActual.celular || '04244259543';
+
             const enlaceBase = window.location.origin + window.location.pathname;
             const enlaceReferido = `${enlaceBase}?ref=${miTelefono}`;
+
             const mensaje = `¡Hola! Estoy comprando plátanos con El Pulpo. 🐙🍌 Usa mi enlace para registrarte y ganar una bolsa de plátanos el sábado: ${enlaceReferido}`;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`, '_blank');
+
+            window.open(
+                `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`,
+                '_blank'
+            );
         }
 
         function compartirTicket() {
