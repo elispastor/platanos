@@ -30,7 +30,7 @@
         .ticket-box h2 { color: var(--verde-medio); font-size: 1.2rem; margin-bottom: 10px; }
         .ticket-box .num { font-size: 2.5rem; font-weight: 900; color: var(--amarillo); margin: 10px 0; }
         .ticket-box p { font-size: 0.9rem; color: #555; margin-bottom: 5px; }
-        .btn-copiar { background: #25D366; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: bold; margin-top: 15px; cursor: pointer; width: 100%; }
+        .btn-whatsapp { display: block; width: 100%; background: #25D366; color: white; text-decoration: none; padding: 15px 20px; border-radius: 50px; font-weight: bold; margin-top: 15px; text-align: center; box-sizing: border-box; font-size: 1rem; }
         .instrucciones { margin-top: 20px; font-size: 0.85rem; color: #666; text-align: center; background: #fff8e1; padding: 15px; border-radius: 10px; }
     </style>
 </head>
@@ -50,23 +50,23 @@
                 <button class="btn-mic" onclick="dictar('masterCelular', this)">🎤</button>
             </div>
             <button class="btn-principal" id="btnRegistrar" onclick="registrarVenta()">Registrar Venta y Generar Ticket</button>
+            
             <div class="ticket-box" id="resultadoTicket">
                 <h2>¡Ticket Generado!</h2>
                 <div class="num" id="resTicket">#1</div>
                 <p><strong>Cliente:</strong> <span id="resNombre">...</span></p>
                 <p><strong>Celular:</strong> <span id="resCelular">...</span></p>
                 <p><strong>Fecha Sorteo:</strong> Sábado</p>
-                <button class="btn-copiar" onclick="enviarPorWhatsApp()">📲 Enviar Ticket por WhatsApp</button>
+                <!-- ESTE ES EL BOTÓN CORREGIDO: Un enlace real, no un botón con JavaScript -->
+                <a id="btnWhatsApp" class="btn-whatsapp" href="#" target="_blank">📲 Enviar Ticket por WhatsApp</a>
             </div>
+            
             <div class="instrucciones">
                 <strong>Instrucción:</strong> Registra al cliente, genera su ticket y toca el botón verde para enviarlo por WhatsApp. Si no hay señal, WhatsApp lo envía solo cuando vuelva el internet.
             </div>
         </div>
     </div>
     <script>
-        // ⚠️ CAMBIA ESTO POR TU NÚMERO DE WHATSAPP (código de país, sin +, sin espacios)
-        const MI_NUMERO = "584227159158";
-
         function dictar(inputId, boton) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) { alert("Tu navegador no soporta el dictado por voz."); return; }
@@ -78,17 +78,13 @@
             recognition.onerror = function() { boton.classList.remove('escuchando'); boton.innerText = '🎤'; };
         }
 
-        let ticketActual = { nombre: '', celular: '', numero: 1 };
-
         function registrarVenta() {
             const nombre = document.getElementById('masterNombre').value.trim();
             const celular = document.getElementById('masterCelular').value.trim();
 
             if (nombre === '' || celular === '') { alert('Por favor, llena ambos campos.'); return; }
 
-            ticketActual.nombre = nombre;
-            ticketActual.celular = celular;
-            ticketActual.numero = Math.floor(1000 + Math.random() * 9000);
+            const ticketNumero = Math.floor(1000 + Math.random() * 9000);
 
             const hoy = new Date();
             const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
@@ -96,25 +92,23 @@
             proximoSabado.setDate(hoy.getDate() + diasParaSabado);
             const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
 
-            document.getElementById('resTicket').innerText = '#' + ticketActual.numero;
-            document.getElementById('resNombre').innerText = ticketActual.nombre;
-            document.getElementById('resCelular').innerText = ticketActual.celular;
+            document.getElementById('resTicket').innerText = '#' + ticketNumero;
+            document.getElementById('resNombre').innerText = nombre;
+            document.getElementById('resCelular').innerText = celular;
             document.getElementById('resultadoTicket').style.display = 'block';
 
             const mensaje = `🐙 *PLÁTANOS EL PULPO* 🐙\n\n` +
-                            `¡Hola ${ticketActual.nombre}!\n` +
+                            `¡Hola ${nombre}!\n` +
                             `Quiero una bolsa de plátanos y participar en el sorteo.\n\n` +
-                            `🎟️ *Ticket:* #${ticketActual.numero}\n` +
-                            `📱 *Celular:* ${ticketActual.celular}\n` +
+                            `🎟️ *Ticket:* #${ticketNumero}\n` +
+                            `📱 *Celular:* ${celular}\n` +
                             `📅 *Sorteo:* Sábado ${fechaStr}\n\n` +
                             `¡Gracias por tu compra!`;
 
-            window.linkWhatsApp = `https://wa.me/${584227159158}?text=${encodeURIComponent(mensaje)}`;
+            // Asignamos el enlace directamente al atributo href del botón verde
+            document.getElementById('btnWhatsApp').href = `https://wa.me/584227159158?text=${encodeURIComponent(mensaje)}`;
+            
             alert('Ticket generado. Ahora toca el botón verde para enviarlo por WhatsApp.');
-        }
-
-        function enviarPorWhatsApp() {
-            window.open(window.linkWhatsApp, '_blank');
         }
     </script>
 </body>
