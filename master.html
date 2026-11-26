@@ -82,36 +82,40 @@
         }
 
         function registrarVenta() {
-            const nombre = document.getElementById('masterNombre').value.trim();
-            const celular = document.getElementById('masterCelular').value.trim();
+    const nombre = document.getElementById('masterNombre').value.trim();
+    const celular = document.getElementById('masterCelular').value.trim();
 
-            if (nombre === '' || celular === '') { alert('Por favor, llena ambos campos.'); return; }
+    if (nombre === '' || celular === '') { alert('Por favor, llena ambos campos.'); return; }
 
-            const ticketNumero = Math.floor(1000 + Math.random() * 9000);
+    const ticketNumero = Math.floor(1000 + Math.random() * 9000);
 
-            const hoy = new Date();
-            const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
-            const proximoSabado = new Date(hoy);
-            proximoSabado.setDate(hoy.getDate() + diasParaSabado);
-            const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
+    const hoy = new Date();
+    const diasParaSabado = (6 - hoy.getDay() + 7) % 7 || 7;
+    const proximoSabado = new Date(hoy);
+    proximoSabado.setDate(hoy.getDate() + diasParaSabado);
+    const fechaStr = proximoSabado.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' });
 
-            document.getElementById('resTicket').innerText = '#' + ticketNumero;
-            document.getElementById('resNombre').innerText = nombre;
-            document.getElementById('resCelular').innerText = celular;
-            document.getElementById('resultadoTicket').style.display = 'block';
+    document.getElementById('resTicket').innerText = '#' + ticketNumero;
+    document.getElementById('resNombre').innerText = nombre;
+    document.getElementById('resCelular').innerText = celular;
+    document.getElementById('resultadoTicket').style.display = 'block';
 
-            const mensaje = `🐙 *PLÁTANOS EL PULPO* 🐙\n\n` +
-                            `¡Hola ${nombre}!\n` +
-                            `Quiero una bolsa de plátanos y participar en el sorteo.\n\n` +
-                            `🎟️ *Ticket:* #${ticketNumero}\n` +
-                            `📱 *Celular:* ${celular}\n` +
-                            `📅 *Sorteo:* Sábado ${fechaStr}\n\n` +
-                            `¡Gracias por tu compra!`;
+    const mensaje = `🐙 *PLÁTANOS EL PULPO* 🐙\n\n` +
+                    `¡Hola ${nombre}!\n` +
+                    `Quiero una bolsa de plátanos y participar en el sorteo.\n\n` +
+                    `🎟️ *Ticket:* #${ticketNumero}\n` +
+                    `📱 *Celular:* ${celular}\n` +
+                    `📅 *Sorteo:* Sábado ${fechaStr}\n\n` +
+                    `¡Gracias por tu compra!`;
 
-            // Asignamos el enlace directamente al atributo href del botón verde
-            document.getElementById('btnWhatsApp').href = `https://wa.me/584244259543?text=${encodeURIComponent(mensaje)}`;
-            
-window.open(`https://wa.me/584244259543?text=${encodeURIComponent(mensaje)}`, '_blank');        }
+    const enlace = `https://wa.me/584244259543?text=${encodeURIComponent(mensaje)}`;
+    
+    // Asignamos el enlace al botón (por si acaso el navegador bloquea la apertura automática)
+    document.getElementById('btnWhatsApp').href = enlace;
+    
+    // 🔥 Abre WhatsApp automáticamente
+    window.open(enlace, '_blank');
+}
     </script>
 </body>
 </html>
