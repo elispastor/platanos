@@ -111,8 +111,7 @@
             // Asignamos el enlace directamente al atributo href del botón verde
             document.getElementById('btnWhatsApp').href = `https://wa.me/584244259543?text=${encodeURIComponent(mensaje)}`;
             
-            alert('Ticket generado. Ahora toca el botón verde para enviarlo por WhatsApp.');
-        }
+window.open(`https://wa.me/584244259543?text=${encodeURIComponent(mensaje)}`, '_blank');        }
     </script>
 </body>
 </html>
